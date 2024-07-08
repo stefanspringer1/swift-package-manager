@@ -16,7 +16,7 @@ import PackageModel
 
 /// An utility class around PackageContainerProvider that allows "prefetching" the containers
 /// in parallel. The basic idea is to kick off container fetching before starting the resolution
-/// by using the list of URLs from the Package.resolved file.
+/// by using the list of URLs from the Composition.resolved file.
 final class ContainerProvider {
     /// The actual package container provider.
     private let underlying: PackageContainerProvider

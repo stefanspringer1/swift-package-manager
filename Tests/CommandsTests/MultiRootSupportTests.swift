@@ -22,8 +22,8 @@ final class MultiRootSupportTests: CommandsTestCase {
 
     func testWorkspaceLoader() throws {
         let fs = InMemoryFileSystem(emptyFiles: [
-            "/tmp/test/dep/Package.swift",
-            "/tmp/test/local/Package.swift",
+            "/tmp/test/dep/Composition.swift",
+            "/tmp/test/local/Composition.swift",
         ])
         let path = AbsolutePath("/tmp/test/Workspace.xcworkspace")
         try fs.writeFileContents(path.appending("contents.xcworkspacedata"), string:

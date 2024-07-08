@@ -693,7 +693,7 @@ final class PackageVersionChecksumTOFUTests: XCTestCase {
                 package: package,
                 version: version,
                 toolsVersion: .none, // default manifest
-                checksum: "Package.swift checksum"
+                checksum: "Composition.swift checksum"
             )
         )
 
@@ -711,7 +711,7 @@ final class PackageVersionChecksumTOFUTests: XCTestCase {
                 )
             }
             XCTAssertEqual(SourceControlURL(registryURL), fingerprint.origin.url)
-            XCTAssertEqual("Package.swift checksum", fingerprint.value)
+            XCTAssertEqual("Composition.swift checksum", fingerprint.value)
         }
         do {
             let fingerprint = try temp_await { callback in

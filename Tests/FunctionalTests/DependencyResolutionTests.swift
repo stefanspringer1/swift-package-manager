@@ -80,7 +80,7 @@ class DependencyResolutionTests: XCTestCase {
         try fixture(name: "DependencyResolution/External/Mirror") { fixturePath in
             let prefix = try resolveSymlinks(fixturePath)
             let appPath = prefix.appending("App")
-            let appPinsPath = appPath.appending("Package.resolved")
+            let appPinsPath = appPath.appending("Composition.resolved")
 
             // prepare the dependencies as git repos
             try ["Foo", "Bar", "BarMirror"].forEach { directory in

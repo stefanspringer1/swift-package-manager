@@ -15,7 +15,7 @@
   * [Handling Version-specific Logic](#handling-version-specific-logic)
   * [Editing a Package](#editing-a-package)
     * [Top of Tree Development](#top-of-tree-development)
-  * [Resolving Versions (Package.resolved file)](#resolving-versions-packageresolved-file)
+  * [Resolving Versions (Composition.resolved file)](#resolving-versions-packageresolved-file)
   * [Setting the Swift Tools Version](#setting-the-swift-tools-version)
   * [Testing](#testing)
   * [Running](#running)
@@ -34,7 +34,7 @@
 ## Creating a Package
 
 Simply put: a package is a git repository with semantically versioned tags,
-that contains Swift sources and a `Package.swift` manifest file at its root.
+that contains Swift sources and a `Composition.swift` manifest file at its root.
 
 ### Creating a Library Package
 
@@ -93,7 +93,7 @@ video. See further documentation on macros in [The Swift Programming Language](h
 To depend on a package, define the dependency and the version in the manifest of
 your package, and add a product from that package as a dependency, e.g., if
 you want to use https://github.com/apple/example-package-playingcard as
-a dependency, add the GitHub URL in the dependencies of `Package.swift`:
+a dependency, add the GitHub URL in the dependencies of `Composition.swift`:
 
 ```swift
 import PackageDescription
@@ -239,7 +239,7 @@ install libraries to different paths.
 The `example` directory structure should look like this now:
 
     .
-    ├── Package.swift
+    ├── Composition.swift
     └── Sources
         ├── Clibgit
         │   ├── git2.h
@@ -247,7 +247,7 @@ The `example` directory structure should look like this now:
         └── main.swift
 
 At this point, your system library target is fully defined, and you can now use
-that target as a dependency in other targets in your `Package.swift`, like this:
+that target as a dependency in other targets in your `Composition.swift`, like this:
 
 ```swift
 
@@ -334,7 +334,7 @@ the required line `#include <stdio.h>`. Alternatively, you can add `#include <st
 to the top of jpeglib.h to avoid creating the `shim.h` file.
 
 Now to use the CJPEG package we must declare our dependency in our example
-app’s `Package.swift`:
+app’s `Composition.swift`:
 
 ```swift
 
@@ -528,11 +528,11 @@ In case the current Swift version doesn't match any version-specific manifest,
 the package manager will pick the manifest with the most compatible tools
 version. For example, if there are three manifests:
 
-`Package.swift` (tools version 3.0)
+`Composition.swift` (tools version 3.0)
 `Package@swift-4.swift` (tools version 4.0)
 `Package@swift-4.2.swift` (tools version 4.2)
 
-The package manager will pick `Package.swift` on Swift 3, `Package@swift-4.swift` on
+The package manager will pick `Composition.swift` on Swift 3, `Package@swift-4.swift` on
 Swift 4, and `Package@swift-4.2.swift` on Swift 4.2 and above because its tools
 version will be most compatible with future version of the package manager.
 
@@ -616,37 +616,37 @@ Use unedit command to stop using the local checkout:
     # Example:
     $ swift package unedit Bar
 
-## Resolving Versions (Package.resolved File)
+## Resolving Versions (Composition.resolved File)
 
 The package manager records the result of dependency resolution in a
-`Package.resolved` file in the top-level of the package, and when this file is
+`Composition.resolved` file in the top-level of the package, and when this file is
 already present in the top-level, it is used when performing dependency
 resolution, rather than the package manager finding the latest eligible version
 of each package. Running `swift package update` updates all dependencies to the
-latest eligible versions and updates the `Package.resolved` file accordingly.
+latest eligible versions and updates the `Composition.resolved` file accordingly.
 
 Resolved versions will always be recorded by the package manager. Some users may
-choose to add the Package.resolved file to their package's .gitignore file. When
+choose to add the Composition.resolved file to their package's .gitignore file. When
 this file is checked in, it allows a team to coordinate on what versions of the
 dependencies they should use. If this file is gitignored, each user will
 separately choose when to get new versions based on when they run the `swift
 package update` command, and new users will start with the latest eligible
 version of each dependency. Either way, for a package which is a dependency of
-other packages (e.g., a library package), that package's `Package.resolved` file
+other packages (e.g., a library package), that package's `Composition.resolved` file
 will not have any effect on its client packages.
 
 The `swift package resolve` command resolves the dependencies, taking into
-account the current version restrictions in the `Package.swift` manifest and
-`Package.resolved` resolved versions file, and issuing an error if the graph
+account the current version restrictions in the `Composition.swift` manifest and
+`Composition.resolved` resolved versions file, and issuing an error if the graph
 cannot be resolved. For packages which have previously resolved versions
-recorded in the `Package.resolved` file, the resolve command will resolve to
+recorded in the `Composition.resolved` file, the resolve command will resolve to
 those versions as long as they are still eligible. If the resolved version's file
 changes (e.g., because a teammate pushed a new version of the file) the next
 resolve command will update packages to match that file. After a successful
 resolve command, the checked out versions of all dependencies and the versions
 recorded in the resolved versions file will match. In most cases the resolve
-command will perform no changes unless the `Package.swift` manifest or
-`Package.resolved` file have changed.
+command will perform no changes unless the `Composition.swift` manifest or
+`Composition.resolved` file have changed.
 
 Most SwiftPM commands will implicitly invoke the `swift package resolve`
 functionality before running, and will cancel with an error if dependencies
@@ -656,8 +656,8 @@ cannot be resolved.
 
 The tools version declares the minimum version of the Swift tools required to
 use the package, determines what version of the PackageDescription API should
-be used in the `Package.swift` manifest, and determines which Swift language
-compatibility version should be used to parse the `Package.swift` manifest.
+be used in the `Composition.swift` manifest, and determines which Swift language
+compatibility version should be used to parse the `Composition.swift` manifest.
 
 When resolving package dependencies, if the version of a dependency that would
 normally be chosen specifies a Swift tools version which is greater than the
@@ -670,7 +670,7 @@ use, a dependency resolution error will result.
 ### Swift Tools Version Specification
 
 The Swift tools version is specified by a special comment in the first line of
-the `Package.swift` manifest. To specify a tools version, a `Package.swift` file
+the `Composition.swift` manifest. To specify a tools version, a `Composition.swift` file
 must begin with the string `// swift-tools-version:`, followed by a version
 number specifier.
 

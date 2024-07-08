@@ -161,7 +161,7 @@ public class MockRegistry {
             let package = PackageIdentity.plain(routeComponents[0 ... 1].joined(separator: "."))
             let version = String(routeComponents[2])
             return try self.getVersionMetadata(packageIdentity: package, version: version)
-        case 4 where routeComponents[3] == "Package.swift":
+        case 4 where routeComponents[3] == "Composition.swift":
             let package = PackageIdentity.plain(routeComponents[0 ... 1].joined(separator: "."))
             let version = String(routeComponents[2])
             guard let components = URLComponents(url: request.url, resolvingAgainstBaseURL: false) else {

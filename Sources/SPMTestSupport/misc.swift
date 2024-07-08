@@ -106,7 +106,7 @@ public func fixture(
             }
 
             // The fixture contains either a checkout or just a Git directory.
-            if localFileSystem.isFile(fixtureDir.appending("Package.swift")) {
+            if localFileSystem.isFile(fixtureDir.appending("Composition.swift")) {
                 // It's a single package, so copy the whole directory as-is.
                 let dstDir = tmpDirPath.appending(component: copyName)
 #if os(Windows)

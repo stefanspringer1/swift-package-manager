@@ -764,7 +764,7 @@ public final class MockWorkspace {
         }
 
         public func check(notPresent name: String, file: StaticString = #file, line: UInt = #line) {
-            XCTAssertFalse(self.store.pins.keys.contains(where: { $0.description == name }), "Unexpectedly found \(name) in Package.resolved", file: file, line: line)
+            XCTAssertFalse(self.store.pins.keys.contains(where: { $0.description == name }), "Unexpectedly found \(name) in Composition.resolved", file: file, line: line)
         }
 
         public func check(dependency package: String, at state: State, file: StaticString = #file, line: UInt = #line) {

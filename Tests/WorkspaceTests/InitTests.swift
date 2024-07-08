@@ -44,7 +44,7 @@ class InitTests: XCTestCase {
             XCTAssertGreaterThan(progressMessages.count, 0)
 
             // Verify basic file system content that we expect in the package
-            let manifest = path.appending("Package.swift")
+            let manifest = path.appending("Composition.swift")
             XCTAssertFileExists(manifest)
             let manifestContents: String = try localFileSystem.readFileContents(manifest)
             let version = InitPackage.newPackageToolsVersion
@@ -78,7 +78,7 @@ class InitTests: XCTestCase {
             XCTAssertGreaterThan(progressMessages.count, 0)
             
             // Verify basic file system content that we expect in the package
-            let manifest = path.appending("Package.swift")
+            let manifest = path.appending("Composition.swift")
             XCTAssertFileExists(manifest)
             let manifestContents: String = try localFileSystem.readFileContents(manifest)
             let version = InitPackage.newPackageToolsVersion
@@ -122,7 +122,7 @@ class InitTests: XCTestCase {
             XCTAssertGreaterThan(progressMessages.count, 0)
 
             // Verify basic file system content that we expect in the package
-            let manifest = path.appending("Package.swift")
+            let manifest = path.appending("Composition.swift")
             XCTAssertFileExists(manifest)
             let manifestContents: String = try localFileSystem.readFileContents(manifest)
             let version = InitPackage.newPackageToolsVersion
@@ -165,7 +165,7 @@ class InitTests: XCTestCase {
             ).writePackageStructure()
 
             // Verify basic file system content that we expect in the package
-            let manifest = path.appending("Package.swift")
+            let manifest = path.appending("Composition.swift")
             XCTAssertFileExists(manifest)
             let manifestContents: String = try localFileSystem.readFileContents(manifest)
             XCTAssertMatch(manifestContents, .and(.contains(".plugin("), .contains("targets: [\"MyCommandPlugin\"]")))
@@ -200,7 +200,7 @@ class InitTests: XCTestCase {
             ).writePackageStructure()
 
             // Verify basic file system content that we expect in the package
-            let manifest = path.appending("Package.swift")
+            let manifest = path.appending("Composition.swift")
             XCTAssertFileExists(manifest)
             let manifestContents: String = try localFileSystem.readFileContents(manifest)
             XCTAssertMatch(manifestContents, .and(.contains(".plugin("), .contains("targets: [\"MyBuildToolPlugin\"]")))
@@ -291,7 +291,7 @@ class InitTests: XCTestCase {
             )
             try initPackage.writePackageStructure()
 
-            let contents: String = try localFileSystem.readFileContents(packageRoot.appending("Package.swift"))
+            let contents: String = try localFileSystem.readFileContents(packageRoot.appending("Composition.swift"))
             XCTAssertMatch(contents, .contains(#"platforms: [.macOS(.v10_15), .iOS(.v12), .watchOS("2.1"), .tvOS("999.0")],"#))
         }
     }

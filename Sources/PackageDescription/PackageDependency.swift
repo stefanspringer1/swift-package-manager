@@ -19,10 +19,10 @@ extension Package {
     ///
     /// Swift Package Manager performs a process called _dependency resolution_ to determine
     /// the exact version of the package dependencies that an app or other Swift
-    /// package can use. The `Package.resolved` file records the results of the
+    /// package can use. The `Composition.resolved` file records the results of the
     /// dependency resolution and lives in the top-level directory of a Swift
     /// package. If you add the Swift package as a package dependency to an app
-    /// for an Apple platform, you can find the `Package.resolved` file inside
+    /// for an Apple platform, you can find the `Composition.resolved` file inside
     /// your `.xcodeproj` or `.xcworkspace`.
     public class Dependency {
         /// The type of dependency.

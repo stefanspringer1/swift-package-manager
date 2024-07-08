@@ -31,7 +31,7 @@ class ToolsVersionTests: XCTestCase {
             let repo = GitRepository(path: depPath)
 
             try fs.writeFileContents(
-                depPath.appending("Package.swift"),
+                depPath.appending("Composition.swift"),
                 string: """
                     // swift-tools-version:5.0
                     import PackageDescription
@@ -70,7 +70,7 @@ class ToolsVersionTests: XCTestCase {
             let primaryPath = path.appending("Primary")
             try fs.createDirectory(primaryPath, recursive: true)
             try fs.writeFileContents(
-                primaryPath.appending("Package.swift"),
+                primaryPath.appending("Composition.swift"),
                 string: """
                     import PackageDescription
                     let package = Package(
@@ -107,7 +107,7 @@ class ToolsVersionTests: XCTestCase {
 
             // Write the manifest with incompatible sources.
             try fs.writeFileContents(
-                primaryPath.appending("Package.swift"),
+                primaryPath.appending("Composition.swift"),
                 string: """
                     import PackageDescription
                     let package = Package(
@@ -125,7 +125,7 @@ class ToolsVersionTests: XCTestCase {
             }
 
             try fs.writeFileContents(
-                primaryPath.appending("Package.swift"),
+                primaryPath.appending("Composition.swift"),
                 string: """
                     import PackageDescription
                     let package = Package(

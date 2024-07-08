@@ -1461,7 +1461,7 @@ final class PubgrubTests: XCTestCase {
     }
 
     func testBranchedBasedPin() throws {
-        // This test ensures that we get the SHA listed in Package.resolved for branch-based
+        // This test ensures that we get the SHA listed in Composition.resolved for branch-based
         // dependencies.
         try builder.serve("a", at: .revision("develop-sha-1"))
         try builder.serve("b", at: .revision("master-sha-2"))
@@ -1605,7 +1605,7 @@ final class PubgrubTests: XCTestCase {
     func testPubGrubPackageContainerCacheParameterization() throws {
         let container = PubGrubPackageContainer(
             underlying: try MockPackageContainer(
-                name: "Package",
+                name: "Composition",
                 dependenciesByProductFilter: [
                     .specific(["FilterA"]): [(
                         container: "DependencyA",
@@ -3219,7 +3219,7 @@ class DependencyGraphBuilder {
     /// Creates a pins store with the given pins.
     func create(pinsStore pins: [String: (PinsStore.PinState, ProductFilter)]) throws -> PinsStore {
         let fs = InMemoryFileSystem()
-        let store = try! PinsStore(pinsFile: "/tmp/Package.resolved", workingDirectory: .root, fileSystem: fs, mirrors: .init())
+        let store = try! PinsStore(pinsFile: "/tmp/Composition.resolved", workingDirectory: .root, fileSystem: fs, mirrors: .init())
 
         for (package, pin) in pins {
             store.pin(packageRef: try reference(for: package), state: pin.0)

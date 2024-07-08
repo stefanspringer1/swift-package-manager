@@ -151,7 +151,7 @@ extension PackageCollectionsModel.Package {
         public let createdAt: Date?
 
         public struct Manifest: Equatable, Codable {
-            /// The Swift tools version specified in `Package.swift`.
+            /// The Swift tools version specified in `Composition.swift`.
             public let toolsVersion: ToolsVersion
 
             /// The package name

@@ -174,7 +174,7 @@ extension PackageCollectionModel.V1.Collection.Package {
         }
 
         public struct Manifest: Equatable, Codable {
-            /// The tools (semantic) version specified in `Package.swift`.
+            /// The tools (semantic) version specified in `Composition.swift`.
             public let toolsVersion: String
 
             /// The name of the package.
@@ -186,7 +186,7 @@ extension PackageCollectionModel.V1.Collection.Package {
             /// An array of the package version's products.
             public let products: [PackageCollectionModel.V1.Product]
 
-            /// An array of the package version’s supported platforms specified in `Package.swift`.
+            /// An array of the package version’s supported platforms specified in `Composition.swift`.
             public let minimumPlatformVersions: [PackageCollectionModel.V1.PlatformVersion]?
 
             /// Creates a `Manifest`

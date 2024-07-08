@@ -234,7 +234,7 @@ class PluginInvocationTests: XCTestCase {
             // Create a sample package with a library target and a plugin.
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending("Package.swift"), string: """
+            try localFileSystem.writeFileContents(packageDir.appending("Composition.swift"), string: """
                 // swift-tools-version: 5.6
                 import PackageDescription
                 let package = Package(
@@ -606,7 +606,7 @@ class PluginInvocationTests: XCTestCase {
             // Create a sample package with a library product and a plugin.
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending("Package.swift"), string: """
+            try localFileSystem.writeFileContents(packageDir.appending("Composition.swift"), string: """
             // swift-tools-version: 5.7
             import PackageDescription
             let package = Package(
@@ -641,7 +641,7 @@ class PluginInvocationTests: XCTestCase {
 
             let fooPkgDir = tmpPath.appending(components: "FooPackage")
             try localFileSystem.createDirectory(fooPkgDir, recursive: true)
-            try localFileSystem.writeFileContents(fooPkgDir.appending("Package.swift"), string: """
+            try localFileSystem.writeFileContents(fooPkgDir.appending("Composition.swift"), string: """
                 // swift-tools-version: 5.7
                 import PackageDescription
                 let package = Package(
@@ -704,7 +704,7 @@ class PluginInvocationTests: XCTestCase {
             // Create a sample package with a library target and a plugin.
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending("Package.swift"), string: """
+            try localFileSystem.writeFileContents(packageDir.appending("Composition.swift"), string: """
                 // swift-tools-version: 5.7
                 import PackageDescription
                 let package = Package(
@@ -783,7 +783,7 @@ class PluginInvocationTests: XCTestCase {
             // Create a sample package with a library target and a plugin.
             let packageDir = tmpPath.appending(components: "mypkg")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending("Package.swift"), string: """
+            try localFileSystem.writeFileContents(packageDir.appending("Composition.swift"), string: """
                 // swift-tools-version:5.7
 
                 import PackageDescription
@@ -924,7 +924,7 @@ class PluginInvocationTests: XCTestCase {
             // Create a sample package with a library target and a plugin.
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending("Package.swift"), string: """
+            try localFileSystem.writeFileContents(packageDir.appending("Composition.swift"), string: """
                 // swift-tools-version: 5.7
                 import PackageDescription
                 let package = Package(
@@ -987,7 +987,7 @@ class PluginInvocationTests: XCTestCase {
 
             let otherPackageDir = tmpPath.appending(components: "OtherPackage")
             try localFileSystem.createDirectory(otherPackageDir, recursive: true)
-            try localFileSystem.writeFileContents(otherPackageDir.appending("Package.swift"), string: """
+            try localFileSystem.writeFileContents(otherPackageDir.appending("Composition.swift"), string: """
                 // swift-tools-version: 5.7
                 import PackageDescription
                 let package = Package(
@@ -1098,7 +1098,7 @@ class PluginInvocationTests: XCTestCase {
             // Create a sample package with a library target and a plugin.
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending("Package.swift"), string: """
+            try localFileSystem.writeFileContents(packageDir.appending("Composition.swift"), string: """
                    // swift-tools-version: 5.7
                    import PackageDescription
                    let package = Package(

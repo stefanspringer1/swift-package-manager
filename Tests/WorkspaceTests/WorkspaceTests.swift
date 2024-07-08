@@ -162,7 +162,7 @@ final class WorkspaceTests: XCTestCase {
             let foo = path.appending("foo")
 
             func createWorkspace(_ content: String) throws -> Workspace {
-                try fs.writeFileContents(foo.appending("Package.swift"), string: content)
+                try fs.writeFileContents(foo.appending("Composition.swift"), string: content)
 
                 let manifestLoader = ManifestLoader(toolchain: try UserToolchain.default)
 
@@ -226,7 +226,7 @@ final class WorkspaceTests: XCTestCase {
             let pkgDir = path.appending("MyPkg")
             try localFileSystem.createDirectory(pkgDir)
             try localFileSystem.writeFileContents(
-                pkgDir.appending("Package.swift"),
+                pkgDir.appending("Composition.swift"),
                 string: """
                 // swift-tools-version:4.0
                 import PackageDescription
@@ -256,7 +256,7 @@ final class WorkspaceTests: XCTestCase {
             testDiagnostics(observability.diagnostics) { result in
                 let diagnostic = result.check(
                     diagnostic: .contains(
-                        "\(pkgDir.appending("Package.swift")):4:8: error: An error in MyPkg"
+                        "\(pkgDir.appending("Composition.swift")):4:8: error: An error in MyPkg"
                     ),
                     severity: .error
                 )
@@ -2249,7 +2249,7 @@ final class WorkspaceTests: XCTestCase {
             toolsVersion: .v4
         )
 
-        let roots = try workspace.rootPaths(for: ["Foo", "Bar", "Baz"]).map { $0.appending("Package.swift") }
+        let roots = try workspace.rootPaths(for: ["Foo", "Bar", "Baz"]).map { $0.appending("Composition.swift") }
 
         try fs.writeFileContents(roots[0], bytes: "// swift-tools-version:4.0")
         try fs.writeFileContents(roots[1], bytes: "// swift-tools-version:4.1.0")
@@ -2646,7 +2646,7 @@ final class WorkspaceTests: XCTestCase {
             result.check(notPresent: "bar")
         }
 
-        // Unedit should get the Package.resolved entry back.
+        // Unedit should get the Composition.resolved entry back.
         workspace.checkUnedit(packageName: "bar", roots: ["Root"]) { diagnostics in
             XCTAssertNoDiagnostics(diagnostics)
         }
@@ -2970,7 +2970,7 @@ final class WorkspaceTests: XCTestCase {
 
         // mimic external process putting a dependency into edit mode
         do {
-            try fs.writeFileContents(fooEditPath.appending("Package.swift"), string: "// swift-tools-version: 5.6")
+            try fs.writeFileContents(fooEditPath.appending("Composition.swift"), string: "// swift-tools-version: 5.6")
 
             let fooState = underlying.state.dependencies[.plain("foo")]!
             let externalState = WorkspaceState(
@@ -3898,7 +3898,7 @@ final class WorkspaceTests: XCTestCase {
 
         // reset state, excluding the resolved file
         try workspace.closeWorkspace(resetResolvedFile: false)
-        XCTAssertTrue(fs.exists(sandbox.appending("Package.resolved")))
+        XCTAssertTrue(fs.exists(sandbox.appending("Composition.resolved")))
         // run update
         try workspace.checkUpdate(roots: ["Root"], deps: deps) { diagnostics in
             XCTAssertNoDiagnostics(diagnostics)
@@ -3933,7 +3933,7 @@ final class WorkspaceTests: XCTestCase {
         ]
         // reset state, excluding the resolved file
         try workspace.closeWorkspace(resetResolvedFile: false)
-        XCTAssertTrue(fs.exists(sandbox.appending("Package.resolved")))
+        XCTAssertTrue(fs.exists(sandbox.appending("Composition.resolved")))
         // run update
         try workspace.checkUpdate(roots: ["Root"], deps: deps) { diagnostics in
             XCTAssertNoDiagnostics(diagnostics)
@@ -3971,8 +3971,8 @@ final class WorkspaceTests: XCTestCase {
         ]
         // reset state, including the resolved file
         workspace.checkReset { XCTAssertNoDiagnostics($0) }
-        try fs.removeFileTree(sandbox.appending("Package.resolved"))
-        XCTAssertFalse(fs.exists(sandbox.appending("Package.resolved")))
+        try fs.removeFileTree(sandbox.appending("Composition.resolved"))
+        XCTAssertFalse(fs.exists(sandbox.appending("Composition.resolved")))
         // run update
         try workspace.checkUpdate(roots: ["Root"], deps: deps) { diagnostics in
             XCTAssertNoDiagnostics(diagnostics)
@@ -5035,7 +5035,7 @@ final class WorkspaceTests: XCTestCase {
         workspace.checkPackageGraphFailure(roots: ["Root"], forceResolvedVersions: true) { diagnostics in
             testDiagnostics(diagnostics) { result in
                 result.check(
-                    diagnostic: "an out-of-date resolved file was detected at \(sandbox.appending(components: "Package.resolved")), which is not allowed when automatic dependency resolution is disabled; please make sure to update the file to reflect the changes in dependencies. Running resolver because requirements have changed.",
+                    diagnostic: "an out-of-date resolved file was detected at \(sandbox.appending(components: "Composition.resolved")), which is not allowed when automatic dependency resolution is disabled; please make sure to update the file to reflect the changes in dependencies. Running resolver because requirements have changed.",
                     severity: .error
                 )
             }
@@ -12188,7 +12188,7 @@ final class WorkspaceTests: XCTestCase {
 
             let foo = path.appending("foo")
             try fs.writeFileContents(
-                foo.appending("Package.swift"),
+                foo.appending("Composition.swift"),
                 string: """
                 // swift-tools-version:5.3
                 import PackageDescription
@@ -15459,7 +15459,7 @@ final class WorkspaceTests: XCTestCase {
                 case "/\(identity.scope)/\(identity.name)/\(packageVersion)":
                     versionMetadataRequestHandler(request, progress, completion)
                 // request to get package manifest
-                case "/\(identity.scope)/\(identity.name)/\(packageVersion)/Package.swift":
+                case "/\(identity.scope)/\(identity.name)/\(packageVersion)/Composition.swift":
                     manifestRequestHandler(request, progress, completion)
                 // request to get download the version source archive
                 case "/\(identity.scope)/\(identity.name)/\(packageVersion).zip":

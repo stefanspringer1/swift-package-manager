@@ -60,7 +60,7 @@ extension SwiftPackageTool {
 
             switch possibleCandidates.count {
             case 0:
-                throw StringError("No Executable Products in Package.swift.")
+                throw StringError("No Executable Products in Composition.swift.")
             case 1:
                 productToInstall = possibleCandidates[0].underlyingProduct
             default:

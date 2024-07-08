@@ -668,7 +668,7 @@ final class PackageToolTests: CommandsTestCase {
             // Create root package.
             let mainFilePath = root.appending(components: "Sources", "root", "main.swift")
             try fs.writeFileContents(mainFilePath, string: "")
-            try fs.writeFileContents(root.appending("Package.swift"), string:
+            try fs.writeFileContents(root.appending("Composition.swift"), string:
                 """
                 // swift-tools-version:4.2
                 import PackageDescription
@@ -682,7 +682,7 @@ final class PackageToolTests: CommandsTestCase {
 
             // Create dependency.
             try fs.writeFileContents(dep.appending(components: "Sources", "dep", "lib.swift"), string: "")
-            try fs.writeFileContents(dep.appending("Package.swift"), string:
+            try fs.writeFileContents(dep.appending("Composition.swift"), string:
                 """
                 // swift-tools-version:4.2
                 import PackageDescription
@@ -721,7 +721,7 @@ final class PackageToolTests: CommandsTestCase {
             try fs.createDirectory(path)
             _ = try execute(["init", "--type", "empty"], packagePath: path)
 
-            XCTAssertFileExists(path.appending("Package.swift"))
+            XCTAssertFileExists(path.appending("Composition.swift"))
         }
     }
 
@@ -732,7 +732,7 @@ final class PackageToolTests: CommandsTestCase {
             try fs.createDirectory(path)
             _ = try execute(["init", "--type", "executable"], packagePath: path)
 
-            let manifest = path.appending("Package.swift")
+            let manifest = path.appending("Composition.swift")
             let contents: String = try localFileSystem.readFileContents(manifest)
             let version = InitPackage.newPackageToolsVersion
             let versionSpecifier = "\(version.major).\(version.minor)"
@@ -750,7 +750,7 @@ final class PackageToolTests: CommandsTestCase {
             try fs.createDirectory(path)
             _ = try execute(["init"], packagePath: path)
 
-            XCTAssertFileExists(path.appending("Package.swift"))
+            XCTAssertFileExists(path.appending("Composition.swift"))
             XCTAssertEqual(try fs.getDirectoryContents(path.appending("Sources").appending("Foo")), ["Foo.swift"])
             XCTAssertEqual(try fs.getDirectoryContents(path.appending("Tests")).sorted(), ["FooTests"])
         }
@@ -763,7 +763,7 @@ final class PackageToolTests: CommandsTestCase {
             try fs.createDirectory(path)
             _ = try execute(["init", "--name", "CustomName", "--type", "executable"], packagePath: path)
 
-            let manifest = path.appending("Package.swift")
+            let manifest = path.appending("Composition.swift")
             let contents: String = try localFileSystem.readFileContents(manifest)
             let version = InitPackage.newPackageToolsVersion
             let versionSpecifier = "\(version.major).\(version.minor)"
@@ -836,7 +836,7 @@ final class PackageToolTests: CommandsTestCase {
             XCTAssertTrue(localFileSystem.isSymlink(bazEditsPath))
 
             // Edit a file in baz ToT checkout.
-            let bazTotPackageFile = bazTot.appending("Package.swift")
+            let bazTotPackageFile = bazTot.appending("Composition.swift")
             var content: String = try localFileSystem.readFileContents(bazTotPackageFile)
             content += "\n// Edited."
             try localFileSystem.writeFileContents(bazTotPackageFile, string: content)
@@ -908,7 +908,7 @@ final class PackageToolTests: CommandsTestCase {
 
             try execute("update")
 
-            let pinsFile = fooPath.appending("Package.resolved")
+            let pinsFile = fooPath.appending("Composition.resolved")
             XCTAssertFileExists(pinsFile)
 
             // Update bar repo.
@@ -965,7 +965,7 @@ final class PackageToolTests: CommandsTestCase {
             }
 
             // We should see a pin file now.
-            let pinsFile = fooPath.appending("Package.resolved")
+            let pinsFile = fooPath.appending("Composition.resolved")
             XCTAssertFileExists(pinsFile)
 
             // Test pins file.
@@ -1049,7 +1049,7 @@ final class PackageToolTests: CommandsTestCase {
 
     func testOnlyUseVersionsFromResolvedFileFetchesWithExistingState() throws {
         func writeResolvedFile(packageDir: AbsolutePath, repositoryURL: String, revision: String, version: String) throws {
-            try localFileSystem.writeFileContents(packageDir.appending("Package.resolved"), string:
+            try localFileSystem.writeFileContents(packageDir.appending("Composition.resolved"), string:
                 """
                 {
                   "object": {
@@ -1073,7 +1073,7 @@ final class PackageToolTests: CommandsTestCase {
 
         try testWithTemporaryDirectory { tmpPath in
             let packageDir = tmpPath.appending(components: "library")
-            try localFileSystem.writeFileContents(packageDir.appending("Package.swift"), string:
+            try localFileSystem.writeFileContents(packageDir.appending("Composition.swift"), string:
                 """
                 // swift-tools-version:5.0
                 import PackageDescription
@@ -1100,7 +1100,7 @@ final class PackageToolTests: CommandsTestCase {
             let repositoryURL = "file://\(packageDir.pathString)"
 
             let clientDir = tmpPath.appending(components: "client")
-            try localFileSystem.writeFileContents(clientDir.appending("Package.swift"), string:
+            try localFileSystem.writeFileContents(clientDir.appending("Composition.swift"), string:
                 """
                 // swift-tools-version:5.0
                 import PackageDescription
@@ -1162,7 +1162,7 @@ final class PackageToolTests: CommandsTestCase {
 
             // Create root package.
             try fs.writeFileContents(root.appending(components: "Sources", "root", "main.swift"), string: "")
-            try fs.writeFileContents(root.appending("Package.swift"), string:
+            try fs.writeFileContents(root.appending("Composition.swift"), string:
                 """
                 // swift-tools-version:4.2
                 import PackageDescription
@@ -1177,7 +1177,7 @@ final class PackageToolTests: CommandsTestCase {
 
             // Create dependency.
             try fs.writeFileContents(dep.appending(components: "Sources", "dep", "lib.swift"), string: "")
-            try fs.writeFileContents(dep.appending("Package.swift"), string:
+            try fs.writeFileContents(dep.appending("Composition.swift"), string:
                 """
                 // swift-tools-version:4.2
                 import PackageDescription
@@ -1207,7 +1207,7 @@ final class PackageToolTests: CommandsTestCase {
         try testWithTemporaryDirectory { fixturePath in
             localFileSystem.createEmptyFiles(at: fixturePath, files:
                 "/Sources/Foo/Foo.swift",
-                "/Package.swift"
+                "/Composition.swift"
             )
 
             let (_, stderr) = try execute(["config", "set-mirror", "--package-url", "https://github.com/foo/bar", "--mirror-url", "https://mygithub.com/foo/bar"], packagePath: fixturePath)
@@ -1226,7 +1226,7 @@ final class PackageToolTests: CommandsTestCase {
             fs.createEmptyFiles(at: packageRoot, files:
                 "/Sources/Foo/Foo.swift",
                 "/Tests/FooTests/FooTests.swift",
-                "/Package.swift",
+                "/Composition.swift",
                 "anchor"
             )
 
@@ -1285,10 +1285,10 @@ final class PackageToolTests: CommandsTestCase {
                 files:
                 "/Sources/Foo/Foo.swift",
                 "/Tests/FooTests/FooTests.swift",
-                "/Package.swift"
+                "/Composition.swift"
             )
 
-            try fs.writeFileContents(packageRoot.appending("Package.swift"), string:
+            try fs.writeFileContents(packageRoot.appending("Composition.swift"), string:
                 """
                 // swift-tools-version: 5.7
                 import PackageDescription
@@ -1328,10 +1328,10 @@ final class PackageToolTests: CommandsTestCase {
                 files:
                 "/Sources/Foo/Foo.swift",
                 "/Tests/FooTests/FooTests.swift",
-                "/Package.swift"
+                "/Composition.swift"
             )
 
-            try fs.writeFileContents(packageRoot.appending("Package.swift"), string:
+            try fs.writeFileContents(packageRoot.appending("Composition.swift"), string:
                 """
                 // swift-tools-version: 5.7
                 import PackageDescription
@@ -1371,10 +1371,10 @@ final class PackageToolTests: CommandsTestCase {
                 files:
                 "/Sources/Foo/Foo.swift",
                 "/Tests/FooTests/FooTests.swift",
-                "/Package.swift"
+                "/Composition.swift"
             )
 
-            try fs.writeFileContents(packageRoot.appending("Package.swift"), string:
+            try fs.writeFileContents(packageRoot.appending("Composition.swift"), string:
                 """
                 // swift-tools-version: 5.7
                 import PackageDescription
@@ -1443,7 +1443,7 @@ final class PackageToolTests: CommandsTestCase {
         try testWithTemporaryDirectory { tmpPath in
             // Create a sample package with a library target and a plugin.
             let packageDir = tmpPath.appending(components: "MyPackage")
-            try localFileSystem.writeFileContents(packageDir.appending("Package.swift"), string:
+            try localFileSystem.writeFileContents(packageDir.appending("Composition.swift"), string:
                 """
                 // swift-tools-version: 5.9
                 import PackageDescription
@@ -1528,7 +1528,7 @@ final class PackageToolTests: CommandsTestCase {
             // Create a sample package with a library target and a plugin.
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending("Package.swift"), string: """
+            try localFileSystem.writeFileContents(packageDir.appending("Composition.swift"), string: """
                 // swift-tools-version: 5.6
                 import PackageDescription
                 let package = Package(
@@ -1624,7 +1624,7 @@ final class PackageToolTests: CommandsTestCase {
                     guard case SwiftPMError.executionFailure(_, _, let stderr) = error else {
                         return XCTFail("invalid error \(error)")
                     }
-                    XCTAssert(stderr.contains("error: Could not find Package.swift in this directory or any of its parent directories."), #"actual: "\#(stderr)""#)
+                    XCTAssert(stderr.contains("error: Could not find Composition.swift in this directory or any of its parent directories."), #"actual: "\#(stderr)""#)
                 }
             }
 
@@ -1651,7 +1651,7 @@ final class PackageToolTests: CommandsTestCase {
         try testWithTemporaryDirectory { tmpPath in
             // Create a sample package with a library target, a plugin, and a local tool. It depends on a sample package which also has a tool.
             let packageDir = tmpPath.appending(components: "MyPackage")
-            try localFileSystem.writeFileContents(packageDir.appending(components: "Package.swift"), string:
+            try localFileSystem.writeFileContents(packageDir.appending(components: "Composition.swift"), string:
                 """
                 // swift-tools-version: 5.9
                 import PackageDescription
@@ -1784,7 +1784,7 @@ final class PackageToolTests: CommandsTestCase {
             )
 
             // Create the sample vendored dependency package.
-            try localFileSystem.writeFileContents(packageDir.appending(components: "VendoredDependencies", "HelperPackage", "Package.swift"), string:
+            try localFileSystem.writeFileContents(packageDir.appending(components: "VendoredDependencies", "HelperPackage", "Composition.swift"), string:
                 """
                 // swift-tools-version: 5.5
                 import PackageDescription
@@ -1877,7 +1877,7 @@ final class PackageToolTests: CommandsTestCase {
         try testWithTemporaryDirectory { tmpPath in
             // Create a sample package with a library target and a plugin.
             let packageDir = tmpPath.appending(components: "MyPackage")
-            try localFileSystem.writeFileContents(packageDir.appending(components: "Package.swift"), string:
+            try localFileSystem.writeFileContents(packageDir.appending(components: "Composition.swift"), string:
                 """
                 // swift-tools-version: 5.9
                 import PackageDescription
@@ -1979,7 +1979,7 @@ final class PackageToolTests: CommandsTestCase {
             // Create a sample package with a library target and a plugin.
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending(components: "Package.swift"), string:
+            try localFileSystem.writeFileContents(packageDir.appending(components: "Composition.swift"), string:
                 """
                 // swift-tools-version: 5.6
                 import PackageDescription
@@ -2102,7 +2102,7 @@ final class PackageToolTests: CommandsTestCase {
 
             try localFileSystem.createDirectory(packageDir)
             try localFileSystem.writeFileContents(
-                packageDir.appending(components: "Package.swift"),
+                packageDir.appending(components: "Composition.swift"),
                 string: """
                 // swift-tools-version: 5.6
                 import PackageDescription
@@ -2186,7 +2186,7 @@ final class PackageToolTests: CommandsTestCase {
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir)
             try localFileSystem.writeFileContents(
-                packageDir.appending(components: "Package.swift"),
+                packageDir.appending(components: "Composition.swift"),
                 string: """
                 // swift-tools-version: 5.6
                 import PackageDescription
@@ -2283,7 +2283,7 @@ final class PackageToolTests: CommandsTestCase {
             // Create a sample package with a library, an executable, and a command plugin.
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending(components: "Package.swift"), string: """
+            try localFileSystem.writeFileContents(packageDir.appending(components: "Composition.swift"), string: """
                 // swift-tools-version: 5.6
                 import PackageDescription
                 let package = Package(
@@ -2450,7 +2450,7 @@ final class PackageToolTests: CommandsTestCase {
             // Create a sample package with a library, a command plugin, and a couple of tests.
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending(components: "Package.swift"), string: """
+            try localFileSystem.writeFileContents(packageDir.appending(components: "Composition.swift"), string: """
                 // swift-tools-version: 5.6
                 import PackageDescription
                 let package = Package(
@@ -2569,7 +2569,7 @@ final class PackageToolTests: CommandsTestCase {
             // Create a sample package with a plugin to test various parts of the API.
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending("Package.swift"), string: """
+            try localFileSystem.writeFileContents(packageDir.appending("Composition.swift"), string: """
                 // swift-tools-version: 5.9
                 import PackageDescription
                 let package = Package(
@@ -2708,7 +2708,7 @@ final class PackageToolTests: CommandsTestCase {
             // Create a separate vendored package so that we can test dependencies across products in other packages.
             let helperPackageDir = packageDir.appending(components: "VendoredDependencies", "HelperPackage")
             try localFileSystem.createDirectory(helperPackageDir, recursive: true)
-            try localFileSystem.writeFileContents(helperPackageDir.appending("Package.swift"), string: """
+            try localFileSystem.writeFileContents(helperPackageDir.appending("Composition.swift"), string: """
                 // swift-tools-version: 5.6
                 import PackageDescription
                 let package = Package(
@@ -2776,7 +2776,7 @@ final class PackageToolTests: CommandsTestCase {
             // Create a sample package with a couple of plugins a other targets and products.
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending(components: "Package.swift"), string: """
+            try localFileSystem.writeFileContents(packageDir.appending(components: "Composition.swift"), string: """
                 // swift-tools-version: 5.6
                 import PackageDescription
                 let package = Package(
@@ -2908,7 +2908,7 @@ final class PackageToolTests: CommandsTestCase {
             // Create a sample package with a library target and a plugin.
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
-            try localFileSystem.writeFileContents(packageDir.appending("Package.swift"), string: """
+            try localFileSystem.writeFileContents(packageDir.appending("Composition.swift"), string: """
                    // swift-tools-version: 5.7
                    import PackageDescription
                    let package = Package(

@@ -19,7 +19,7 @@ import struct TSCBasic.ByteString
 
 import class TSCUtility.FSWatch
 
-/// A file watcher utility for the Package.resolved file.
+/// A file watcher utility for the Composition.resolved file.
 ///
 /// This is not intended to be used directly by clients.
 final class ResolvedFileWatcher {

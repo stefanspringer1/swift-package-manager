@@ -296,7 +296,7 @@ final class APIDiffTests: CommandsTestCase {
                 packageRoot.appending(components: "Sources", "Foo", "Foo.swift"),
                 string: #"public let foo = "All new module!""#
             )
-            try localFileSystem.writeFileContents(packageRoot.appending("Package.swift"), string:
+            try localFileSystem.writeFileContents(packageRoot.appending("Composition.swift"), string:
                 """
                 // swift-tools-version:4.2
                 import PackageDescription

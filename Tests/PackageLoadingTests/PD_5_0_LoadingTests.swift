@@ -364,7 +364,7 @@ class PackageDescription5_0LoadingTests: PackageDescriptionLoadingTests {
     func testSerializedDiagnostics() throws {
         try testWithTemporaryDirectory { path in
             let fs = localFileSystem
-            let manifestPath = path.appending(components: "pkg", "Package.swift")
+            let manifestPath = path.appending(components: "pkg", "Composition.swift")
 
             let loader = ManifestLoader(
                 toolchain: try UserToolchain.default,
@@ -591,7 +591,7 @@ class PackageDescription5_0LoadingTests: PackageDescriptionLoadingTests {
 
             let packagePath = path.appending("pkg")
             try fs.createDirectory(packagePath)
-            let manifestPath = packagePath.appending("Package.swift")
+            let manifestPath = packagePath.appending("Composition.swift")
             try fs.writeFileContents(
                 manifestPath,
                 string: """

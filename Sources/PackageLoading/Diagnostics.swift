@@ -20,12 +20,12 @@ extension Basics.Diagnostic {
         if shouldSuggestRelaxedSourceDir {
             clauses.append("'\(folderName)'")
         }
-        clauses.append("or a custom sources path can be set with the 'path' property in Package.swift")
+        clauses.append("or a custom sources path can be set with the 'path' property in Composition.swift")
         return .warning(clauses.joined(separator: ", "))
     }
 
     static func targetNameHasIncorrectCase(target: String) -> Self {
-        .warning("the target name \(target) has different case on the filesystem and the Package.swift manifest file")
+        .warning("the target name \(target) has different case on the filesystem and the Composition.swift manifest file")
     }
 
     static func unsupportedCTestTarget(package: String, target: String) -> Self {

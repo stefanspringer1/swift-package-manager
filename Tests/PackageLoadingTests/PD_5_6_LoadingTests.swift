@@ -237,7 +237,7 @@ class PackageDescription5_6LoadingTests: PackageDescriptionLoadingTests {
         XCTAssertNoDiagnostics(validationDiagnostics)
 
         let files = manifest.displayName.split(separator: ",").map(String.init)
-        // Since we're loading `/Package.swift` in these tests, the context's package directory is supposed to be /.
+        // Since we're loading `/Composition.swift` in these tests, the context's package directory is supposed to be /.
         let expectedFiles = try FileManager.default.contentsOfDirectory(atPath: "/")
         XCTAssertEqual(files, expectedFiles)
     }

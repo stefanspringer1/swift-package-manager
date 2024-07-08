@@ -735,7 +735,7 @@ extension Workspace {
         )
     }
 
-    /// Resolves the dependencies according to the entries present in the Package.resolved file.
+    /// Resolves the dependencies according to the entries present in the Composition.resolved file.
     ///
     /// This method bypasses the dependency resolution and resolves dependencies
     /// according to the information in the resolved file.

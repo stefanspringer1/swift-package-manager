@@ -26,7 +26,7 @@ class ManifestLoaderCacheTests: XCTestCase {
             let fileSystem = localFileSystem
             let observability = ObservabilitySystem.makeForTesting()
 
-            let manifestPath = path.appending(components: "pkg", "Package.swift")
+            let manifestPath = path.appending(components: "pkg", "Composition.swift")
             try fileSystem.createDirectory(manifestPath.parentDirectory, recursive: true)
             try fileSystem.writeFileContents(
                 manifestPath,
@@ -120,7 +120,7 @@ class ManifestLoaderCacheTests: XCTestCase {
         let fileSystem = InMemoryFileSystem()
         let observability = ObservabilitySystem.makeForTesting()
 
-        let manifestPath = AbsolutePath.root.appending(components: "pkg", "Package.swift")
+        let manifestPath = AbsolutePath.root.appending(components: "pkg", "Composition.swift")
         try fileSystem.createDirectory(manifestPath.parentDirectory, recursive: true)
         try fileSystem.writeFileContents(
             manifestPath,
@@ -273,7 +273,7 @@ class ManifestLoaderCacheTests: XCTestCase {
             let fileSystem = InMemoryFileSystem()
             let observability = ObservabilitySystem.makeForTesting()
 
-            let manifestPath = path.appending(components: "pkg", "Package.swift")
+            let manifestPath = path.appending(components: "pkg", "Composition.swift")
             try fileSystem.createDirectory(manifestPath.parentDirectory, recursive: true)
             try fileSystem.writeFileContents(
                 manifestPath,
@@ -339,7 +339,7 @@ class ManifestLoaderCacheTests: XCTestCase {
             let fileSystem = InMemoryFileSystem()
             let observability = ObservabilitySystem.makeForTesting()
 
-            let manifestPath = path.appending(components: "pkg", "Package.swift")
+            let manifestPath = path.appending(components: "pkg", "Composition.swift")
             try fileSystem.createDirectory(manifestPath.parentDirectory, recursive: true)
             try fileSystem.writeFileContents(
                 manifestPath,
@@ -543,7 +543,7 @@ private func makeMockManifests(fileSystem: FileSystem, rootPath: AbsolutePath, c
     var manifests = [ManifestLoader.CacheKey: ManifestLoader.EvaluationResult]()
     for index in 0 ..< count {
         let packagePath = rootPath.appending("\(index)")
-        let manifestPath = packagePath.appending("Package.swift")
+        let manifestPath = packagePath.appending("Composition.swift")
 
         try fileSystem.createDirectory(packagePath, recursive: true)
         try fileSystem.writeFileContents(

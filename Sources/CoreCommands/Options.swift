@@ -145,7 +145,7 @@ public struct CachingOptions: ParsableArguments {
     /// Disables manifest caching.
     @Option(
         name: .customLong("manifest-cache"),
-        help: "Caching mode of Package.swift manifests (shared: shared cache, local: package's build directory, none: disabled"
+        help: "Caching mode of Composition.swift manifests (shared: shared cache, local: package's build directory, none: disabled"
     )
     public var manifestCachingMode: ManifestCachingMode = .shared
 
@@ -245,10 +245,10 @@ public struct ResolverOptions: ParsableArguments {
     @Flag(name: .customLong("prefetching"), inversion: .prefixedEnableDisable)
     public var shouldEnableResolverPrefetching: Bool = true
 
-    /// Use Package.resolved file for resolving dependencies.
+    /// Use Composition.resolved file for resolving dependencies.
     @Flag(
         name: [.long, .customLong("disable-automatic-resolution"), .customLong("only-use-versions-from-resolved-file")],
-        help: "Only use versions from the Package.resolved file and fail resolution if it is out-of-date"
+        help: "Only use versions from the Composition.resolved file and fail resolution if it is out-of-date"
     )
     public var forceResolvedVersions: Bool = false
 

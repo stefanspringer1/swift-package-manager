@@ -88,7 +88,7 @@ enum ExtensionBlockSymbolBehavior: String, EnumerableFlag {
 
 struct DumpPackage: SwiftCommand {
     static let configuration = CommandConfiguration(
-        abstract: "Print parsed Package.swift as JSON")
+        abstract: "Print parsed Composition.swift as JSON")
 
     @OptionGroup(visibility: .hidden)
     var globalOptions: GlobalOptions

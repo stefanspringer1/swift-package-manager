@@ -27,7 +27,7 @@ public struct ToolsVersionSpecificationWriter {
     // designed to be used as a static utility
     private init() {}
 
-    /// Rewrites Swift tools version specification to the non-version-specific manifest file (`Package.swift`) in the given directory.
+    /// Rewrites Swift tools version specification to the non-version-specific manifest file (`Composition.swift`) in the given directory.
     ///
     /// If the main manifest file already contains a valid tools version specification (ignoring the validity of the version specifier and that of everything following it), then the existing specification is replaced by this new one.
     ///
@@ -35,7 +35,7 @@ public struct ToolsVersionSpecificationWriter {
     ///
     /// A `FileSystemError` is thrown if the manifest file is unable to be read from or written to.
     ///
-    /// - Precondition: `manifestDirectoryPath` must be a valid path to a directory that contains a `Package.swift` file.
+    /// - Precondition: `manifestDirectoryPath` must be a valid path to a directory that contains a `Composition.swift` file.
     ///
     /// - Parameters:
     ///   - manifestDirectory: The absolute path to the given directory.

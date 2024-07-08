@@ -48,7 +48,7 @@ final class BasicTests: XCTestCase {
             let packagePath = tempDir.appending(component: "tool")
             try localFileSystem.createDirectory(packagePath)
             try localFileSystem.writeFileContents(
-                packagePath.appending(component: "Package.swift"),
+                packagePath.appending(component: "Composition.swift"),
                 bytes: ByteString(encodingAsUTF8: """
                     // swift-tools-version:4.2
                     import PackageDescription
@@ -194,7 +194,7 @@ final class BasicTests: XCTestCase {
             let packagePath = tempDir.appending(components: "more spaces", "special tool")
             try localFileSystem.createDirectory(packagePath, recursive: true)
             try localFileSystem.writeFileContents(
-                packagePath.appending(component: "Package.swift"),
+                packagePath.appending(component: "Composition.swift"),
                 bytes: ByteString(encodingAsUTF8: """
                     // swift-tools-version:4.2
                     import PackageDescription
@@ -295,7 +295,7 @@ final class BasicTests: XCTestCase {
             let packagePath = tempDir.appending(component: "swiftTestResources")
             try localFileSystem.createDirectory(packagePath)
             try localFileSystem.writeFileContents(
-                packagePath.appending(component: "Package.swift"),
+                packagePath.appending(component: "Composition.swift"),
                 bytes: ByteString(encodingAsUTF8: """
                     // swift-tools-version:5.3
                     import PackageDescription

@@ -27,7 +27,7 @@ We’ve designed the system to make it really easy to share packages on services
 
 ## About Packages
 
-A package consists of Swift source files, including the `Package.swift` manifest file. The manifest file, or package manifest, defines the package's name and its contents using the PackageDescription module. A package has one or more targets. Each target specifies a product and may declare one or more dependencies.
+A package consists of Swift source files, including the `Composition.swift` manifest file. The manifest file, or package manifest, defines the package's name and its contents using the PackageDescription module. A package has one or more targets. Each target specifies a product and may declare one or more dependencies.
 
 ***
 
@@ -45,10 +45,10 @@ As a rule of thumb: more modules is probably better than fewer modules. The pack
 
 The Swift Package Manager and its build system needs to understand how to compile your source code. To do this, it uses a convention-based approach which uses the organization of your source code in the file system to determine what you mean, but allows you to fully override and customize these details. A simple example could be:
 
-    foo/Package.swift
+    foo/Composition.swift
     foo/Sources/main.swift
 
-> `Package.swift` is the manifest file that contains metadata about your package. `Package.swift` is documented in a later section.
+> `Composition.swift` is the manifest file that contains metadata about your package. `Composition.swift` is documented in a later section.
 
 If you then run the following command in the directory `foo`:
 
@@ -58,7 +58,7 @@ swift build
 
 Swift will build a single executable called `foo`.
 
-To the package manager, everything is a package, hence `Package.swift`. However, this does not mean you have to release your software to the wider world; you can develop your app without ever publishing it in a place where others can see or use it. On the other hand, if one day you decide that your project _should_ be available to a wider audience your sources are already in a form ready to be published. The package manager is also independent of specific forms of distribution, so you can use it to share code within your personal projects, within your workgroup, team or company, or with the world.
+To the package manager, everything is a package, hence `Composition.swift`. However, this does not mean you have to release your software to the wider world; you can develop your app without ever publishing it in a place where others can see or use it. On the other hand, if one day you decide that your project _should_ be available to a wider audience your sources are already in a form ready to be published. The package manager is also independent of specific forms of distribution, so you can use it to share code within your personal projects, within your workgroup, team or company, or with the world.
 
 Of course, the package manager is used to build itself, so its own source files are laid out following these conventions as well.
 
@@ -78,7 +78,7 @@ In addition to downloading and building the source code for a dependency, that d
 
 The role of the package manager is to automate the process of downloading and building all of the dependencies for a project, and minimize the coordination costs associated with code reuse.
 
-Dependencies are specified in your `Package.swift` manifest file.
+Dependencies are specified in your `Composition.swift` manifest file.
 
 ### Dependency Hell
 

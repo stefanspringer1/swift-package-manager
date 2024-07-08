@@ -120,7 +120,7 @@ paths:
                 type: integer
         4XX:
           $ref: "#/components/responses/problemDetails"
-  "/{scope}/{name}/{version}/Package.swift":
+  "/{scope}/{name}/{version}/Composition.swift":
     parameters:
       - $ref: "#/components/parameters/scope"
       - $ref: "#/components/parameters/name"

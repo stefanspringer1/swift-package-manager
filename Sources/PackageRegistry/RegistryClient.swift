@@ -2093,7 +2093,7 @@ extension HTTPClientHeaders {
 
 extension HTTPClientHeaders {
     /*
-     <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=4>; rel="alternate"; filename="Package@swift-4.swift"; swift-tools-version="4.0"
+     <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=4>; rel="alternate"; filename="Package@swift-4.swift"; swift-tools-version="4.0"
      */
     fileprivate func parseManifestLinks() throws -> [RegistryClient.ManifestLink] {
         try self.get("Link").map { header -> [RegistryClient.ManifestLink] in

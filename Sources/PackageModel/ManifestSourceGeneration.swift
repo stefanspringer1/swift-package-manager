@@ -124,7 +124,7 @@ fileprivate extension SourceCodeFragment {
             params.append(SourceCodeFragment(key: "cxxLanguageStandard", subnode: node))
         }
 
-        self.init("Package", delimiters: .parentheses, subnodes: params)
+        self.init("Composition", delimiters: .parentheses, subnodes: params)
     }
     
     /// Instantiates a SourceCodeFragment to represent a single platform.

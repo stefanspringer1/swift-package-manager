@@ -156,7 +156,7 @@ class ToolsVersionParserTests: XCTestCase {
 		let packageRoot = AbsolutePath("/lorem/ipsum/dolor")
 		try fs.createDirectory(packageRoot, recursive: true)
 
-		let manifestPath = packageRoot.appending("Package.swift")
+		let manifestPath = packageRoot.appending("Composition.swift")
         try fs.writeFileContents(manifestPath, bytes: "")
 
         XCTAssertThrowsError(
@@ -700,7 +700,7 @@ class ToolsVersionParserTests: XCTestCase {
         }
 
         // Test default manifest.
-        try fs.writeFileContents(root.appending("Package.swift"), string: "// swift-tools-version:3.1.1\n")
+        try fs.writeFileContents(root.appending("Composition.swift"), string: "// swift-tools-version:3.1.1\n")
         try parse { version in
             XCTAssertEqual(version.description, "3.1.1")
         }
@@ -741,7 +741,7 @@ class ToolsVersionParserTests: XCTestCase {
             body(try ToolsVersionParser.parse(manifestPath: manifestPath, fileSystem: fs))
         }
 
-        try fs.writeFileContents(root.appending("Package.swift"), string: "// swift-tools-version:1.0.0\n")
+        try fs.writeFileContents(root.appending("Composition.swift"), string: "// swift-tools-version:1.0.0\n")
         try fs.writeFileContents(root.appending("Package@swift-4.2.swift"), string: "// swift-tools-version:3.4.5\n")
         try fs.writeFileContents(root.appending("Package@swift-15.1.swift"), string: "// swift-tools-version:3.4.6\n")
         try fs.writeFileContents(root.appending("Package@swift-15.2.swift"), string: "// swift-tools-version:3.4.7\n")
@@ -770,7 +770,7 @@ class ToolsVersionParserTests: XCTestCase {
         )
         let root = AbsolutePath("/pkg")
 
-        try fs.writeFileContents(root.appending("Package.swift"), string: "// swift-tools-version:6.0.0\n")
+        try fs.writeFileContents(root.appending("Composition.swift"), string: "// swift-tools-version:6.0.0\n")
         try fs.writeFileContents(root.appending("Package@swift-5.0.swift"), string: "// swift-tools-version:5.0.0\n")
 
         let currentToolsVersion = ToolsVersion(version: "5.5.0")

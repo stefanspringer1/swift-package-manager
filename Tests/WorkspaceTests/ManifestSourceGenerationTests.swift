@@ -483,7 +483,7 @@ class ManifestSourceGenerationTests: XCTestCase {
         let packageDir = AbsolutePath("/tmp/MyLibrary")
         let manifest = Manifest.createManifest(
             displayName: "MyLibrary",
-            path: packageDir.appending("Package.swift"),
+            path: packageDir.appending("Composition.swift"),
             packageKind: .root("/tmp/MyLibrary"),
             packageLocation: packageDir.pathString,
             platforms: [],

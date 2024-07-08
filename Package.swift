@@ -122,7 +122,7 @@ let package = Package(
     ],
     targets: [
         // The `PackageDescription` target provides the API that is available
-        // to `Package.swift` manifests. Here we build a debug version of the
+        // to `Composition.swift` manifests. Here we build a debug version of the
         // library; the bootstrap scripts build the deployable version.
         .target(
             name: "PackageDescription",

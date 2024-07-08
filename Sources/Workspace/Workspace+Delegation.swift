@@ -120,7 +120,7 @@ public protocol WorkspaceDelegate: AnyObject {
     /// Called when the resolver finished computing the version for the repository.
     func didComputeVersion(package: PackageIdentity, location: String, version: String, duration: DispatchTimeInterval)
 
-    /// Called when the Package.resolved file is changed *outside* of libSwiftPM operations.
+    /// Called when the Composition.resolved file is changed *outside* of libSwiftPM operations.
     ///
     /// This is only fired when activated using Workspace's watchResolvedFile() method.
     func resolvedFileChanged()

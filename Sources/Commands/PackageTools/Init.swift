@@ -34,7 +34,7 @@ extension SwiftPackageTool {
                 build-tool-plugin - A package that vends a build tool plugin.
                 command-plugin    - A package that vends a command plugin.
                 macro             - A package that vends a macro.
-                empty             - An empty package with a Package.swift manifest.
+                empty             - An empty package with a Composition.swift manifest.
                 """))
         var initMode: InitPackage.PackageType = .library
 

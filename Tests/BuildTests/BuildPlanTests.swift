@@ -4350,7 +4350,7 @@ final class BuildPlanTests: XCTestCase {
                 fileSystem: fs,
                 manifests: [
                     Manifest.createRootManifest(
-                        displayName: "Package",
+                        displayName: "Composition",
                         path: "/Package",
                         products: [
                             ProductDescription(name: "rary", type: .library(.static), targets: ["rary"]),

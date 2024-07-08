@@ -77,7 +77,7 @@ In this example, `https://packages.example.com` will be applied to all scopes.
 
 ### Adding a registry package dependency
 
-A registry package dependency is declared in `Package.swift` using the
+A registry package dependency is declared in `Composition.swift` using the
 package identifier. For example: 
 
 ```swift
@@ -348,7 +348,7 @@ for fetching this metadata in its original form.
 
 ##### Package manifest(s)
 
-`Package.swift` and version-specific manifests are individually signed.
+`Composition.swift` and version-specific manifests are individually signed.
 The signature is embedded in the corresponding manifest file. The source
 archive is generated and signed **after** manifest signing. 
 

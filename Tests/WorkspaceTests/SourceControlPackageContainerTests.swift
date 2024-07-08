@@ -197,7 +197,7 @@ class SourceControlPackageContainerTests: XCTestCase {
         let fs = InMemoryFileSystem()
 
         let repoPath = AbsolutePath.root
-        let filePath = repoPath.appending("Package.swift")
+        let filePath = repoPath.appending("Composition.swift")
 
         let specifier = RepositorySpecifier(path: repoPath)
         let repo = InMemoryGitRepository(path: repoPath, fs: fs)
@@ -239,7 +239,7 @@ class SourceControlPackageContainerTests: XCTestCase {
         let fs = InMemoryFileSystem()
 
         let repoPath = AbsolutePath.root
-        let filePath = repoPath.appending("Package.swift")
+        let filePath = repoPath.appending("Composition.swift")
 
         let specifier = RepositorySpecifier(path: repoPath)
         let repo = InMemoryGitRepository(path: repoPath, fs: fs)
@@ -332,7 +332,7 @@ class SourceControlPackageContainerTests: XCTestCase {
         let fs = InMemoryFileSystem()
 
         let repoPath = AbsolutePath.root
-        let filePath = repoPath.appending("Package.swift")
+        let filePath = repoPath.appending("Composition.swift")
 
         let specifier = RepositorySpecifier(path: repoPath)
         let repo = InMemoryGitRepository(path: repoPath, fs: fs)
@@ -376,7 +376,7 @@ class SourceControlPackageContainerTests: XCTestCase {
         let fs = InMemoryFileSystem()
 
         let repoPath = AbsolutePath.root
-        let filePath = repoPath.appending("Package.swift")
+        let filePath = repoPath.appending("Composition.swift")
 
         let specifier = RepositorySpecifier(path: repoPath)
         let repo = InMemoryGitRepository(path: repoPath, fs: fs)
@@ -564,11 +564,11 @@ class SourceControlPackageContainerTests: XCTestCase {
             let packageRepo = GitRepository(path: packageDir)
 
             // Create a package manifest in it (it only needs the `swift-tools-version` part, because we'll supply the manifest later).
-            let manifestFile = packageDir.appending("Package.swift")
+            let manifestFile = packageDir.appending("Composition.swift")
             try localFileSystem.writeFileContents(manifestFile, string: "// swift-tools-version:4.2")
 
             // Commit it and tag it.
-            try packageRepo.stage(file: "Package.swift")
+            try packageRepo.stage(file: "Composition.swift")
             try packageRepo.commit(message: "Initial")
             try packageRepo.tag(name: "1.0.0")
 
@@ -713,15 +713,15 @@ class SourceControlPackageContainerTests: XCTestCase {
     // This lead to corrupt graph states.
     func testRepositoryPackageContainerCache() throws {
         try testWithTemporaryDirectory { temporaryDirectory in
-            let packageDirectory = temporaryDirectory.appending("Package")
+            let packageDirectory = temporaryDirectory.appending("Composition")
             try localFileSystem.createDirectory(packageDirectory)
             initGitRepo(packageDirectory)
             let packageRepository = GitRepository(path: packageDirectory)
 
-            let manifestFile = packageDirectory.appending("Package.swift")
+            let manifestFile = packageDirectory.appending("Composition.swift")
             try localFileSystem.writeFileContents(manifestFile, string: "// swift-tools-version:5.2")
 
-            try packageRepository.stage(file: "Package.swift")
+            try packageRepository.stage(file: "Composition.swift")
             try packageRepository.commit(message: "Initialized.")
             try packageRepository.tag(name: "1.0.0")
 

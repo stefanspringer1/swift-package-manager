@@ -35,7 +35,7 @@ extension Workspace {
         /// Path to store the editable versions of dependencies.
         public var editsDirectory: AbsolutePath
 
-        /// Path to the Package.resolved file.
+        /// Path to the Composition.resolved file.
         public var resolvedVersionsFile: AbsolutePath
 
         /// Path to the local configuration directory.
@@ -155,7 +155,7 @@ extension Workspace {
         /// - Parameters:
         ///   - scratchDirectory: Path to scratch space (working) directory for this workspace.
         ///   - editsDirectory: Path to store the editable versions of dependencies.
-        ///   - resolvedVersionsFile: Path to the Package.resolved file.
+        ///   - resolvedVersionsFile: Path to the Composition.resolved file.
         ///   - sharedSecurityDirectory: Path to the shared security directory.
         ///   - sharedCacheDirectory: Path to the shared cache directory.
         ///   - sharedConfigurationDirectory: Path to the shared configuration directory.
@@ -202,7 +202,7 @@ extension Workspace {
 extension Workspace {
     /// Workspace default locations utilities
     public struct DefaultLocations {
-        public static var resolvedFileName = "Package.resolved"
+        public static var resolvedFileName = "Composition.resolved"
 
         public static func scratchDirectory(forRootPackage rootPath: AbsolutePath) -> AbsolutePath {
             rootPath.appending(".build")

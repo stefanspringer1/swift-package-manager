@@ -24,7 +24,7 @@ public final class Manifest: Sendable {
     public static let filename = basename + ".swift"
 
     /// The standard basename for the manifest.
-    public static let basename = "Package"
+    public static let basename = "Composition"
 
     /// The name of the package as it appears in the manifest
     /// FIXME: deprecate this, there is no value in this once we have real package identifiers

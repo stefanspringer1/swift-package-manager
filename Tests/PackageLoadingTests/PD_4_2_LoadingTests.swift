@@ -605,7 +605,7 @@ class PackageDescription4_2LoadingTests: PackageDescriptionLoadingTests {
     func testConcurrencyWithWarmup() throws {
         try testWithTemporaryDirectory { path in
             let total = 1000
-            let manifestPath = path.appending(components: "pkg", "Package.swift")
+            let manifestPath = path.appending(components: "pkg", "Composition.swift")
             try localFileSystem.createDirectory(manifestPath.parentDirectory)
             try localFileSystem.writeFileContents(
                 manifestPath,
@@ -715,7 +715,7 @@ class PackageDescription4_2LoadingTests: PackageDescriptionLoadingTests {
             let sync = DispatchGroup()
             for _ in 0 ..< total {
                 let random = Int.random(in: 0 ... total / 4)
-                let manifestPath = path.appending(components: "pkg-\(random)", "Package.swift")
+                let manifestPath = path.appending(components: "pkg-\(random)", "Composition.swift")
                 if !localFileSystem.exists(manifestPath) {
                     try localFileSystem.createDirectory(manifestPath.parentDirectory)
                     try localFileSystem.writeFileContents(

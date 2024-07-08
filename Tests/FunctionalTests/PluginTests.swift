@@ -178,7 +178,7 @@ class PluginTests: XCTestCase {
         try testWithTemporaryDirectory { tmpPath in
             // Create a sample package with a library target and a plugin. It depends on a sample package.
             let packageDir = tmpPath.appending(components: "MyPackage")
-            let manifestFile = packageDir.appending("Package.swift")
+            let manifestFile = packageDir.appending("Composition.swift")
             try localFileSystem.createDirectory(manifestFile.parentDirectory, recursive: true)
             try localFileSystem.writeFileContents(
                 manifestFile,
@@ -322,7 +322,7 @@ class PluginTests: XCTestCase {
             )
 
             // Create the sample vendored dependency package.
-            let library1Path = packageDir.appending(components: "VendoredDependencies", "HelperPackage", "Package.swift")
+            let library1Path = packageDir.appending(components: "VendoredDependencies", "HelperPackage", "Composition.swift")
             try localFileSystem.createDirectory(library1Path.parentDirectory, recursive: true)
             try localFileSystem.writeFileContents(
                 library1Path,
@@ -579,7 +579,7 @@ class PluginTests: XCTestCase {
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
             try localFileSystem.writeFileContents(
-                packageDir.appending(components: "Package.swift"),
+                packageDir.appending(components: "Composition.swift"),
                 string: """
                 // swift-tools-version: 5.6
                 import PackageDescription
@@ -794,7 +794,7 @@ class PluginTests: XCTestCase {
             let packageDir = tmpPath.appending(components: "MyPackage")
             try localFileSystem.createDirectory(packageDir, recursive: true)
             try localFileSystem.writeFileContents(
-                packageDir.appending("Package.swift"),
+                packageDir.appending("Composition.swift"),
                 string: """
                 // swift-tools-version: 5.6
                 import PackageDescription
@@ -828,7 +828,7 @@ class PluginTests: XCTestCase {
             let buildToolPluginPackageDir = packageDir.appending(components: "VendoredDependencies", "BuildToolPluginPackage")
             try localFileSystem.createDirectory(buildToolPluginPackageDir, recursive: true)
             try localFileSystem.writeFileContents(
-                buildToolPluginPackageDir.appending("Package.swift"),
+                buildToolPluginPackageDir.appending("Composition.swift"),
                 string: """
                 // swift-tools-version: 5.6
                 import PackageDescription
@@ -864,7 +864,7 @@ class PluginTests: XCTestCase {
             let unusedBuildToolPluginPackageDir = packageDir.appending(components: "VendoredDependencies", "UnusedBuildToolPluginPackage")
             try localFileSystem.createDirectory(unusedBuildToolPluginPackageDir, recursive: true)
             try localFileSystem.writeFileContents(
-                unusedBuildToolPluginPackageDir.appending("Package.swift"),
+                unusedBuildToolPluginPackageDir.appending("Composition.swift"),
                 string: """
                 // swift-tools-version: 5.6
                 import PackageDescription
@@ -900,7 +900,7 @@ class PluginTests: XCTestCase {
             let commandPluginPackageDir = packageDir.appending(components: "VendoredDependencies", "CommandPluginPackage")
             try localFileSystem.createDirectory(commandPluginPackageDir, recursive: true)
             try localFileSystem.writeFileContents(
-                commandPluginPackageDir.appending("Package.swift"),
+                commandPluginPackageDir.appending("Composition.swift"),
                 string: """
                 // swift-tools-version: 5.6
                 import PackageDescription

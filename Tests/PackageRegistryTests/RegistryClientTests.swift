@@ -376,7 +376,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let checksumAlgorithm: HashAlgorithm = MockHashAlgorithm()
         let checksum = checksumAlgorithm.hash(emptyZipFile).hexadecimalRepresentation
@@ -442,9 +442,9 @@ final class RegistryClientTests: XCTestCase {
                 let defaultManifestData = Data(defaultManifest.utf8)
 
                 let links = """
-                <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=4>; rel="alternate"; filename="Package@swift-4.swift"; swift-tools-version="4.0",
-                <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=4.2>; rel="alternate"; filename="Package@swift-4.2.swift"; swift-tools-version="4.2",
-                <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=5.3>; rel="alternate"; filename="Package@swift-5.3.swift"; swift-tools-version="5.3"
+                <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=4>; rel="alternate"; filename="Package@swift-4.swift"; swift-tools-version="4.0",
+                <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=4.2>; rel="alternate"; filename="Package@swift-4.2.swift"; swift-tools-version="4.2",
+                <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=5.3>; rel="alternate"; filename="Package@swift-5.3.swift"; swift-tools-version="5.3"
                 """
 
                 completion(.success(.init(
@@ -480,8 +480,8 @@ final class RegistryClientTests: XCTestCase {
             version: version
         )
 
-        XCTAssertEqual(availableManifests["Package.swift"]?.toolsVersion, .v5_5)
-        XCTAssertEqual(availableManifests["Package.swift"]?.content, defaultManifest)
+        XCTAssertEqual(availableManifests["Composition.swift"]?.toolsVersion, .v5_5)
+        XCTAssertEqual(availableManifests["Composition.swift"]?.content, defaultManifest)
         XCTAssertEqual(availableManifests["Package@swift-4.swift"]?.toolsVersion, .v4)
         XCTAssertEqual(availableManifests["Package@swift-4.swift"]?.content, .none)
         XCTAssertEqual(availableManifests["Package@swift-4.2.swift"]?.toolsVersion, .v4_2)
@@ -496,7 +496,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let checksumAlgorithm: HashAlgorithm = MockHashAlgorithm()
         let checksum = checksumAlgorithm.hash(emptyZipFile).hexadecimalRepresentation
@@ -562,9 +562,9 @@ final class RegistryClientTests: XCTestCase {
                 let defaultManifestData = Data(defaultManifest.utf8)
 
                 let links = """
-                <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=4>; rel="alternate"; filename="Package@swift-4.swift"; swift-tools-version="4.0",
-                <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=4.2>; rel="alternate"; filename="Package@swift-4.2.swift"; swift-tools-version="4.2",
-                <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=5.3>; rel="alternate"; filename="Package@swift-5.3.swift"; swift-tools-version="5.3"
+                <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=4>; rel="alternate"; filename="Package@swift-4.swift"; swift-tools-version="4.0",
+                <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=4.2>; rel="alternate"; filename="Package@swift-4.2.swift"; swift-tools-version="4.2",
+                <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=5.3>; rel="alternate"; filename="Package@swift-5.3.swift"; swift-tools-version="5.3"
                 """
 
                 completion(.success(.init(
@@ -619,8 +619,8 @@ final class RegistryClientTests: XCTestCase {
             version: version
         )
 
-        XCTAssertEqual(availableManifests["Package.swift"]?.toolsVersion, .v5_5)
-        XCTAssertEqual(availableManifests["Package.swift"]?.content, defaultManifest)
+        XCTAssertEqual(availableManifests["Composition.swift"]?.toolsVersion, .v5_5)
+        XCTAssertEqual(availableManifests["Composition.swift"]?.content, defaultManifest)
         XCTAssertEqual(availableManifests["Package@swift-4.swift"]?.toolsVersion, .v4)
         XCTAssertEqual(availableManifests["Package@swift-4.swift"]?.content, .none)
         XCTAssertEqual(availableManifests["Package@swift-4.2.swift"]?.toolsVersion, .v4_2)
@@ -635,7 +635,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let checksumAlgorithm: HashAlgorithm = MockHashAlgorithm()
         let checksum = checksumAlgorithm.hash(emptyZipFile).hexadecimalRepresentation
@@ -701,9 +701,9 @@ final class RegistryClientTests: XCTestCase {
                 let defaultManifestData = Data(defaultManifest.utf8)
 
                 let links = """
-                <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=4>; rel="alternate"; filename="Package@swift-4.swift"; swift-tools-version="4.0",
-                <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=4.2>; rel="alternate"; filename="Package@swift-4.2.swift"; swift-tools-version="4.2",
-                <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=5.3>; rel="alternate"; filename="Package@swift-5.3.swift"; swift-tools-version="5.3"
+                <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=4>; rel="alternate"; filename="Package@swift-4.swift"; swift-tools-version="4.0",
+                <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=4.2>; rel="alternate"; filename="Package@swift-4.2.swift"; swift-tools-version="4.2",
+                <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=5.3>; rel="alternate"; filename="Package@swift-5.3.swift"; swift-tools-version="5.3"
                 """
 
                 completion(.success(.init(
@@ -770,7 +770,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let checksumAlgorithm: HashAlgorithm = MockHashAlgorithm()
         let checksum = checksumAlgorithm.hash(emptyZipFile).hexadecimalRepresentation
@@ -836,9 +836,9 @@ final class RegistryClientTests: XCTestCase {
                 let defaultManifestData = Data(defaultManifest.utf8)
 
                 let links = """
-                <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=4>; rel="alternate"; filename="Package@swift-4.swift"; swift-tools-version="4.0",
-                <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=4.2>; rel="alternate"; filename="Package@swift-4.2.swift"; swift-tools-version="4.2",
-                <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=5.3>; rel="alternate"; filename="Package@swift-5.3.swift"; swift-tools-version="5.3"
+                <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=4>; rel="alternate"; filename="Package@swift-4.swift"; swift-tools-version="4.0",
+                <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=4.2>; rel="alternate"; filename="Package@swift-4.2.swift"; swift-tools-version="4.2",
+                <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=5.3>; rel="alternate"; filename="Package@swift-5.3.swift"; swift-tools-version="5.3"
                 """
 
                 completion(.success(.init(
@@ -901,8 +901,8 @@ final class RegistryClientTests: XCTestCase {
             result.check(diagnostic: .contains("does not match previously recorded value"), severity: .warning)
         }
 
-        XCTAssertEqual(availableManifests["Package.swift"]?.toolsVersion, .v5_5)
-        XCTAssertEqual(availableManifests["Package.swift"]?.content, defaultManifest)
+        XCTAssertEqual(availableManifests["Composition.swift"]?.toolsVersion, .v5_5)
+        XCTAssertEqual(availableManifests["Composition.swift"]?.content, defaultManifest)
         XCTAssertEqual(availableManifests["Package@swift-4.swift"]?.toolsVersion, .v4)
         XCTAssertEqual(availableManifests["Package@swift-4.swift"]?.content, .none)
         XCTAssertEqual(availableManifests["Package@swift-4.2.swift"]?.toolsVersion, .v4_2)
@@ -917,7 +917,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let serverErrorHandler = ServerErrorHandler(
             method: .get,
@@ -980,7 +980,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let serverErrorHandler = ServerErrorHandler(
             method: .get,
@@ -1068,7 +1068,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let checksumAlgorithm: HashAlgorithm = MockHashAlgorithm()
         let checksum = checksumAlgorithm.hash(emptyZipFile).hexadecimalRepresentation
@@ -1193,7 +1193,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let checksumAlgorithm: HashAlgorithm = MockHashAlgorithm()
         let checksum = checksumAlgorithm.hash(emptyZipFile).hexadecimalRepresentation
@@ -1308,7 +1308,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let checksumAlgorithm: HashAlgorithm = MockHashAlgorithm()
         let checksum = checksumAlgorithm.hash(emptyZipFile).hexadecimalRepresentation
@@ -1442,7 +1442,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let checksumAlgorithm: HashAlgorithm = MockHashAlgorithm()
         let checksum = checksumAlgorithm.hash(emptyZipFile).hexadecimalRepresentation
@@ -1576,7 +1576,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let checksumAlgorithm: HashAlgorithm = MockHashAlgorithm()
         let checksum = checksumAlgorithm.hash(emptyZipFile).hexadecimalRepresentation
@@ -1726,7 +1726,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let serverErrorHandler = ServerErrorHandler(
             method: .get,
@@ -1792,7 +1792,7 @@ final class RegistryClientTests: XCTestCase {
         let version = Version("1.1.1")
         let metadataURL = URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)")
         let manifestURL =
-            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Package.swift")
+            URL("\(registryURL)/\(identity.registry!.scope)/\(identity.registry!.name)/\(version)/Composition.swift")
 
         let serverErrorHandler = ServerErrorHandler(
             method: .get,
@@ -1985,7 +1985,7 @@ final class RegistryClientTests: XCTestCase {
 
                     let packagePath = to.appending(component: "package")
                     try fileSystem.createDirectory(packagePath, recursive: true)
-                    try fileSystem.writeFileContents(packagePath.appending(component: "Package.swift"), string: "")
+                    try fileSystem.writeFileContents(packagePath.appending(component: "Composition.swift"), string: "")
                     callback(.success(()))
                 })
             },
@@ -2004,7 +2004,7 @@ final class RegistryClientTests: XCTestCase {
         )
 
         let contents = try fileSystem.getDirectoryContents(path)
-        XCTAssertEqual(contents.sorted(), [RegistryReleaseMetadataStorage.fileName, "Package.swift"].sorted())
+        XCTAssertEqual(contents.sorted(), [RegistryReleaseMetadataStorage.fileName, "Composition.swift"].sorted())
 
         let storedMetadata = try RegistryReleaseMetadataStorage.load(
             from: path.appending(component: RegistryReleaseMetadataStorage.fileName),
@@ -2126,7 +2126,7 @@ final class RegistryClientTests: XCTestCase {
 
                     let packagePath = to.appending("package")
                     try fileSystem.createDirectory(packagePath, recursive: true)
-                    try fileSystem.writeFileContents(packagePath.appending("Package.swift"), string: "")
+                    try fileSystem.writeFileContents(packagePath.appending("Composition.swift"), string: "")
                     callback(.success(()))
                 })
             },
@@ -2145,7 +2145,7 @@ final class RegistryClientTests: XCTestCase {
         )
 
         let contents = try fileSystem.getDirectoryContents(path)
-        XCTAssertEqual(contents.sorted(), [RegistryReleaseMetadataStorage.fileName, "Package.swift"].sorted())
+        XCTAssertEqual(contents.sorted(), [RegistryReleaseMetadataStorage.fileName, "Composition.swift"].sorted())
     }
 
     func testDownloadSourceArchive_nonMatchingChecksumInStorage() throws {
@@ -2257,7 +2257,7 @@ final class RegistryClientTests: XCTestCase {
 
                     let packagePath = to.appending("package")
                     try fileSystem.createDirectory(packagePath, recursive: true)
-                    try fileSystem.writeFileContents(packagePath.appending("Package.swift"), string: "")
+                    try fileSystem.writeFileContents(packagePath.appending("Composition.swift"), string: "")
                     callback(.success(()))
                 })
             },
@@ -2394,7 +2394,7 @@ final class RegistryClientTests: XCTestCase {
 
                     let packagePath = to.appending("package")
                     try fileSystem.createDirectory(packagePath, recursive: true)
-                    try fileSystem.writeFileContents(packagePath.appending("Package.swift"), string: "")
+                    try fileSystem.writeFileContents(packagePath.appending("Composition.swift"), string: "")
                     callback(.success(()))
                 })
             },
@@ -2422,7 +2422,7 @@ final class RegistryClientTests: XCTestCase {
         }
 
         let contents = try fileSystem.getDirectoryContents(path)
-        XCTAssertEqual(contents.sorted(), [RegistryReleaseMetadataStorage.fileName, "Package.swift"].sorted())
+        XCTAssertEqual(contents.sorted(), [RegistryReleaseMetadataStorage.fileName, "Composition.swift"].sorted())
     }
 
     func testDownloadSourceArchive_checksumNotInStorage() throws {
@@ -2516,7 +2516,7 @@ final class RegistryClientTests: XCTestCase {
 
                     let packagePath = to.appending("package")
                     try fileSystem.createDirectory(packagePath, recursive: true)
-                    try fileSystem.writeFileContents(packagePath.appending("Package.swift"), string: "")
+                    try fileSystem.writeFileContents(packagePath.appending("Composition.swift"), string: "")
                     callback(.success(()))
                 })
             },
@@ -2535,7 +2535,7 @@ final class RegistryClientTests: XCTestCase {
         )
 
         let contents = try fileSystem.getDirectoryContents(path)
-        XCTAssertEqual(contents.sorted(), [RegistryReleaseMetadataStorage.fileName, "Package.swift"].sorted())
+        XCTAssertEqual(contents.sorted(), [RegistryReleaseMetadataStorage.fileName, "Composition.swift"].sorted())
 
         // Expected checksum is not found in storage so the metadata API will be called
         let fingerprint = try temp_await { callback in
@@ -2645,7 +2645,7 @@ final class RegistryClientTests: XCTestCase {
 
                     let packagePath = to.appending("package")
                     try fileSystem.createDirectory(packagePath, recursive: true)
-                    try fileSystem.writeFileContents(packagePath.appending("Package.swift"), string: "")
+                    try fileSystem.writeFileContents(packagePath.appending("Composition.swift"), string: "")
                     callback(.success(()))
                 })
             },
@@ -2665,7 +2665,7 @@ final class RegistryClientTests: XCTestCase {
 
         let contents = try fileSystem.getDirectoryContents(path)
         // TODO: check metadata
-        XCTAssertEqual(contents.sorted(), [RegistryReleaseMetadataStorage.fileName, "Package.swift"].sorted())
+        XCTAssertEqual(contents.sorted(), [RegistryReleaseMetadataStorage.fileName, "Composition.swift"].sorted())
     }
 
     func testDownloadSourceArchive_404() throws {

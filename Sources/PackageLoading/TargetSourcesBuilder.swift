@@ -399,7 +399,7 @@ public struct TargetSourcesBuilder {
             // Ignore manifest files.
             if path.parentDirectory == self.packagePath {
                 if path.basename == Manifest.filename { continue }
-                if path.basename == "Package.resolved" { continue }
+                if path.basename == "Composition.resolved" { continue }
 
                 // Ignore version-specific manifest files.
                 if path.basename.hasPrefix(Manifest.basename + "@") && path.extension == "swift" {

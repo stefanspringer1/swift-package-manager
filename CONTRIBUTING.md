@@ -47,7 +47,7 @@ SwiftPM is typically built with a pre-existing version of SwiftPM present on the
 
 1. Install Xcode from [https://developer.apple.com/xcode](https://developer.apple.com/xcode) (including betas!).
 2. Verify the expected version of Xcode was installed.
-3. Open SwiftPM's `Package.swift` manifest with Xcode.
+3. Open SwiftPM's `Composition.swift` manifest with Xcode.
 4. Use Xcode to inspect, edit, and build the code.
 5. Select the `SwiftPM-Package` scheme to run the tests from Xcode. Note that the `SwiftPM-Package`
 should be built prior to running any other schemes. This is so the `PackageDescription` module can be
@@ -387,12 +387,12 @@ Note that this may generate documentation for multiple modules — the preview 
 
 ### Using Custom Swift Compilers
 
-SwiftPM needs the Swift compiler to parse `Package.swift` manifest files and to
+SwiftPM needs the Swift compiler to parse `Composition.swift` manifest files and to
 compile Swift source files. You can use the `SWIFT_EXEC` and `SWIFT_EXEC_MANIFEST`
 environment variables to control which compiler to use for these operations.
 
 `SWIFT_EXEC_MANIFEST`: This variable controls which compiler to use for parsing
-`Package.swift` manifest files. The lookup order for the manifest compiler is:
+`Composition.swift` manifest files. The lookup order for the manifest compiler is:
 `SWIFT_EXEC_MANIFEST`, `swiftc` adjacent to the `swiftpm` binaries, then `SWIFT_EXEC`
 
 `SWIFT_EXEC`: This variable controls which compiler to use for compiling Swift

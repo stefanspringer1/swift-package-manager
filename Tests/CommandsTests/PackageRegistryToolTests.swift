@@ -304,7 +304,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
                 fileSystem: localFileSystem
             )
             try initPackage.writePackageStructure()
-            XCTAssertFileExists(packageDirectory.appending("Package.swift"))
+            XCTAssertFileExists(packageDirectory.appending("Composition.swift"))
 
             initGitRepo(packageDirectory)
 
@@ -336,7 +336,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
                 fileSystem: localFileSystem
             )
             try initPackage.writePackageStructure()
-            XCTAssertFileExists(packageDirectory.appending("Package.swift"))
+            XCTAssertFileExists(packageDirectory.appending("Composition.swift"))
 
             let workingDirectory = temporaryDirectory.appending(component: UUID().uuidString)
 
@@ -365,7 +365,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
                 fileSystem: localFileSystem
             )
             try initPackage.writePackageStructure()
-            XCTAssertFileExists(packageDirectory.appending("Package.swift"))
+            XCTAssertFileExists(packageDirectory.appending("Composition.swift"))
 
             // metadata file
             try localFileSystem.writeFileContents(
@@ -397,7 +397,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
             try localFileSystem.createDirectory(extractPath)
             try temp_await { archiver.extract(from: archivePath, to: extractPath, completion: $0) }
             try localFileSystem.stripFirstLevel(of: extractPath)
-            XCTAssertFileExists(extractPath.appending("Package.swift"))
+            XCTAssertFileExists(extractPath.appending("Composition.swift"))
             return extractPath
         }
     }
@@ -426,7 +426,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
                 fileSystem: localFileSystem
             )
             try initPackage.writePackageStructure()
-            XCTAssertFileExists(packageDirectory.appending("Package.swift"))
+            XCTAssertFileExists(packageDirectory.appending("Composition.swift"))
 
             let workingDirectory = temporaryDirectory.appending(component: UUID().uuidString)
             try localFileSystem.createDirectory(workingDirectory)
@@ -450,9 +450,9 @@ final class PackageRegistryToolTests: CommandsTestCase {
             let archivePath = workingDirectory.appending("\(packageIdentity)-\(version).zip")
 
             // manifest should not be signed
-            let manifest = try localFileSystem.readFileContents(packageDirectory.appending("Package.swift")).contents
+            let manifest = try localFileSystem.readFileContents(packageDirectory.appending("Composition.swift")).contents
             try await validateManifest(
-                manifestFile: "Package.swift",
+                manifestFile: "Composition.swift",
                 in: archivePath,
                 manifestContent: manifest
             )
@@ -470,7 +470,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
                 fileSystem: localFileSystem
             )
             try initPackage.writePackageStructure()
-            XCTAssertFileExists(packageDirectory.appending("Package.swift"))
+            XCTAssertFileExists(packageDirectory.appending("Composition.swift"))
 
             let workingDirectory = temporaryDirectory.appending(component: UUID().uuidString)
             try localFileSystem.createDirectory(workingDirectory)
@@ -493,9 +493,9 @@ final class PackageRegistryToolTests: CommandsTestCase {
             let archivePath = workingDirectory.appending("\(packageIdentity)-\(version).zip")
 
             // manifest should not be signed
-            let manifest = try localFileSystem.readFileContents(packageDirectory.appending("Package.swift")).contents
+            let manifest = try localFileSystem.readFileContents(packageDirectory.appending("Composition.swift")).contents
             try await validateManifest(
-                manifestFile: "Package.swift",
+                manifestFile: "Composition.swift",
                 in: archivePath,
                 manifestContent: manifest
             )
@@ -513,7 +513,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
                 fileSystem: localFileSystem
             )
             try initPackage.writePackageStructure()
-            XCTAssertFileExists(packageDirectory.appending("Package.swift"))
+            XCTAssertFileExists(packageDirectory.appending("Composition.swift"))
 
             let workingDirectory = temporaryDirectory.appending(component: UUID().uuidString)
             try localFileSystem.createDirectory(workingDirectory)
@@ -533,9 +533,9 @@ final class PackageRegistryToolTests: CommandsTestCase {
             let archivePath = workingDirectory.appending("\(packageIdentity)-\(version).zip")
 
             // manifest should not be signed
-            let manifest = try localFileSystem.readFileContents(packageDirectory.appending("Package.swift")).contents
+            let manifest = try localFileSystem.readFileContents(packageDirectory.appending("Composition.swift")).contents
             try await validateManifest(
-                manifestFile: "Package.swift",
+                manifestFile: "Composition.swift",
                 in: archivePath,
                 manifestContent: manifest
             )
@@ -594,7 +594,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
             )
             try initPackage.writePackageStructure()
 
-            let manifestPath = packageDirectory.appending("Package.swift")
+            let manifestPath = packageDirectory.appending("Composition.swift")
             XCTAssertFileExists(manifestPath)
 
             let versionSpecificManifestPath = packageDirectory.appending("Package@swift-\(ToolsVersion.current).swift")
@@ -673,7 +673,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
             // manifest signatures
             let manifest = try localFileSystem.readFileContents(manifestPath).contents
             try await self.validateSignedManifest(
-                manifestFile: "Package.swift",
+                manifestFile: "Composition.swift",
                 in: archivePath,
                 manifestContent: manifest,
                 format: signatureFormat,
@@ -705,7 +705,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
             )
             try initPackage.writePackageStructure()
 
-            let manifestPath = packageDirectory.appending("Package.swift")
+            let manifestPath = packageDirectory.appending("Composition.swift")
             XCTAssertFileExists(manifestPath)
 
             let versionSpecificManifestPath = packageDirectory.appending("Package@swift-\(ToolsVersion.current).swift")
@@ -783,7 +783,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
             // manifest signatures
             let manifest = try localFileSystem.readFileContents(manifestPath).contents
             try await self.validateSignedManifest(
-                manifestFile: "Package.swift",
+                manifestFile: "Composition.swift",
                 in: archivePath,
                 manifestContent: manifest,
                 format: signatureFormat,
@@ -815,7 +815,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
             )
             try initPackage.writePackageStructure()
 
-            let manifestPath = packageDirectory.appending("Package.swift")
+            let manifestPath = packageDirectory.appending("Composition.swift")
             XCTAssertFileExists(manifestPath)
 
             let versionSpecificManifestPath = packageDirectory.appending("Package@swift-\(ToolsVersion.current).swift")
@@ -883,7 +883,7 @@ final class PackageRegistryToolTests: CommandsTestCase {
             // manifest signatures
             let manifest = try localFileSystem.readFileContents(manifestPath).contents
             try await self.validateSignedManifest(
-                manifestFile: "Package.swift",
+                manifestFile: "Composition.swift",
                 in: archivePath,
                 manifestContent: manifest,
                 format: signatureFormat,

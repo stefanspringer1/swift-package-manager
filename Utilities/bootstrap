@@ -642,8 +642,8 @@ def build_swiftpm_with_swiftpm(args, integrated_swift_driver):
         swiftpm_args.append("--force-resolved-versions")
 
         # Any leftover resolved file from a run without `SWIFTCI_USE_LOCAL_DEPS` needs to be deleted.
-        if os.path.exists("Package.resolved"):
-            os.remove("Package.resolved")
+        if os.path.exists("Composition.resolved"):
+            os.remove("Composition.resolved")
 
         swiftpm_args += ["-Xswiftc", "-Xfrontend", "-Xswiftc", "-disable-implicit-concurrency-module-import"]
         swiftpm_args += ["-Xswiftc", "-Xfrontend", "-Xswiftc", "-disable-implicit-string-processing-module-import"]

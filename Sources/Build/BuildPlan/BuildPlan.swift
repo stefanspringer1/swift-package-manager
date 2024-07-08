@@ -174,7 +174,7 @@ public class BuildPlan: SPMBuildCore.BuildPlan {
             case .noBuildableTarget:
                 return """
                 The package does not contain a buildable target. 
-                Add at least one `.target` or `.executableTarget` to your `Package.swift`.
+                Add at least one `.target` or `.executableTarget` to your `Composition.swift`.
                 """
             }
         }

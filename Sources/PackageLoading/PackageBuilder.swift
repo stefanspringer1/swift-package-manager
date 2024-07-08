@@ -105,7 +105,7 @@ extension ModuleError: CustomStringConvertible {
             if shouldSuggestRelaxedSourceDir {
                 clauses.append("'\(folderName)'")
             }
-            clauses.append("or a custom sources path can be set with the 'path' property in Package.swift")
+            clauses.append("or a custom sources path can be set with the 'path' property in Composition.swift")
             return clauses.joined(separator: ", ")
         case .artifactNotFound(let targetName, let expectedArtifactName):
             return "binary target '\(targetName)' could not be mapped to an artifact with expected name '\(expectedArtifactName)'"

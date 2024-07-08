@@ -82,7 +82,7 @@ Swift 5.8
 
 * [SE-0362] 
 
-  SwiftPM targets can now specify the upcoming language features they require. `Package.swift` manifest syntax has been expanded with an API to include setting `enableUpcomingFeature` and `enableExperimentalFeature` flags at the target level, as specified by [SE-0362].
+  SwiftPM targets can now specify the upcoming language features they require. `Composition.swift` manifest syntax has been expanded with an API to include setting `enableUpcomingFeature` and `enableExperimentalFeature` flags at the target level, as specified by [SE-0362].
   
 * [SE-0378]
 
@@ -174,7 +174,7 @@ Swift 5.6
 
 * [#3717]
 
-  Introduce a second version of `Package.resolved` file format which more accurately captures package identity.
+  Introduce a second version of `Composition.resolved` file format which more accurately captures package identity.
 
 * [#3890]
 

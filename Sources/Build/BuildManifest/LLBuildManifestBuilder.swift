@@ -154,8 +154,8 @@ extension LLBuildManifestBuilder {
             // FIXME: Need to handle version-specific manifests.
             inputs.append(file: package.manifest.path)
 
-            // FIXME: This won't be the location of Package.resolved for multiroot packages.
-            inputs.append(file: package.path.appending("Package.resolved"))
+            // FIXME: This won't be the location of Composition.resolved for multiroot packages.
+            inputs.append(file: package.path.appending("Composition.resolved"))
 
             // FIXME: Add config file as an input
 

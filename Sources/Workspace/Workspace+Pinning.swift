@@ -93,9 +93,9 @@ extension Workspace {
         self.resolvedFileWatcher?.updateValue()
     }
 
-    /// Watch the Package.resolved for changes.
+    /// Watch the Composition.resolved for changes.
     ///
-    /// This is useful if clients want to be notified when the Package.resolved
+    /// This is useful if clients want to be notified when the Composition.resolved
     /// file is changed *outside* of libSwiftPM operations. For example, as part
     /// of a git operation.
     public func watchResolvedFile() throws {

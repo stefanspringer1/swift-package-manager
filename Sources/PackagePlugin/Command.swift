@@ -59,7 +59,7 @@ public extension Command {
     ///     Any files recognizable by their extension as source files
     ///     (e.g. `.swift`) are compiled into the target for which this command
     ///     was generated as if in its source directory; other files are treated
-    ///     as resources as if explicitly listed in `Package.swift` using
+    ///     as resources as if explicitly listed in `Composition.swift` using
     ///     `.process(...)`.
     static func buildCommand(
         displayName: String?,
@@ -103,7 +103,7 @@ public extension Command {
     ///     Any files recognizable by their extension as source files
     ///     (e.g. `.swift`) are compiled into the target for which this command
     ///     was generated as if in its source directory; other files are treated
-    ///     as resources as if explicitly listed in `Package.swift` using
+    ///     as resources as if explicitly listed in `Composition.swift` using
     ///     `.process(...)`.
     @available(*, unavailable, message: "specifying the initial working directory for a command is not yet supported")
     static func buildCommand(
@@ -149,7 +149,7 @@ public extension Command {
     ///     source files (e.g. `.swift`) are compiled into the target for which
     ///     this command was generated as if in its source directory; other
     ///     files are treated as resources as if explicitly listed in
-    ///     `Package.swift` using `.process(...)`.
+    ///     `Composition.swift` using `.process(...)`.
     static func prebuildCommand(
         displayName: String?,
         executable: Path,
@@ -190,7 +190,7 @@ public extension Command {
     ///     source files (e.g. `.swift`) are compiled into the target for which
     ///     this command was generated as if in its source directory; other
     ///     files are treated as resources as if explicitly listed in
-    ///     `Package.swift` using `.process(...)`.
+    ///     `Composition.swift` using `.process(...)`.
     @available(*, unavailable, message: "specifying the initial working directory for a command is not yet supported")
     static func prebuildCommand(
         displayName: String?,

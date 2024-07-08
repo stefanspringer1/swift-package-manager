@@ -19,7 +19,7 @@ import XCTest
 class ManifestSignatureParserTests: XCTestCase {
     func testSignedManifest() throws {
         try testWithTemporaryDirectory { tmpPath in
-            let manifestPath = tmpPath.appending("Package.swift")
+            let manifestPath = tmpPath.appending("Composition.swift")
             let signatureBytes = Array(UUID().uuidString.utf8)
 
             try localFileSystem.writeFileContents(
@@ -58,7 +58,7 @@ class ManifestSignatureParserTests: XCTestCase {
 
     func testManifestSignatureWithLeadingAndTrailingWhitespace() throws {
         try testWithTemporaryDirectory { tmpPath in
-            let manifestPath = tmpPath.appending("Package.swift")
+            let manifestPath = tmpPath.appending("Composition.swift")
             let signatureBytes = Array(UUID().uuidString.utf8)
 
             try localFileSystem.writeFileContents(
@@ -99,7 +99,7 @@ class ManifestSignatureParserTests: XCTestCase {
 
     func testUnsignedManifest() throws {
         try testWithTemporaryDirectory { tmpPath in
-            let manifestPath = tmpPath.appending("Package.swift")
+            let manifestPath = tmpPath.appending("Composition.swift")
             try localFileSystem.writeFileContents(
                 manifestPath,
                 string: """
@@ -122,7 +122,7 @@ class ManifestSignatureParserTests: XCTestCase {
 
     func testManifestWithCommentAsLastLine() throws {
         try testWithTemporaryDirectory { tmpPath in
-            let manifestPath = tmpPath.appending("Package.swift")
+            let manifestPath = tmpPath.appending("Composition.swift")
             try localFileSystem.writeFileContents(
                 manifestPath,
                 string: """
@@ -146,7 +146,7 @@ class ManifestSignatureParserTests: XCTestCase {
 
     func testManifestWithIncompleteSignatureLine1() throws {
         try testWithTemporaryDirectory { tmpPath in
-            let manifestPath = tmpPath.appending("Package.swift")
+            let manifestPath = tmpPath.appending("Composition.swift")
             try localFileSystem.writeFileContents(
                 manifestPath,
                 string: """
@@ -170,7 +170,7 @@ class ManifestSignatureParserTests: XCTestCase {
 
     func testManifestWithIncompleteSignatureLine2() throws {
         try testWithTemporaryDirectory { tmpPath in
-            let manifestPath = tmpPath.appending("Package.swift")
+            let manifestPath = tmpPath.appending("Composition.swift")
             try localFileSystem.writeFileContents(
                 manifestPath,
                 string: """
@@ -194,7 +194,7 @@ class ManifestSignatureParserTests: XCTestCase {
 
     func testManifestWithIncompleteSignatureLine3() throws {
         try testWithTemporaryDirectory { tmpPath in
-            let manifestPath = tmpPath.appending("Package.swift")
+            let manifestPath = tmpPath.appending("Composition.swift")
             try localFileSystem.writeFileContents(
                 manifestPath,
                 string: """
@@ -218,7 +218,7 @@ class ManifestSignatureParserTests: XCTestCase {
 
     func testManifestWithIncompleteSignatureLine4() throws {
         try testWithTemporaryDirectory { tmpPath in
-            let manifestPath = tmpPath.appending("Package.swift")
+            let manifestPath = tmpPath.appending("Composition.swift")
             try localFileSystem.writeFileContents(
                 manifestPath,
                 string: """
@@ -242,7 +242,7 @@ class ManifestSignatureParserTests: XCTestCase {
 
     func testManifestWithMalformedSignature() throws {
         try testWithTemporaryDirectory { tmpPath in
-            let manifestPath = tmpPath.appending("Package.swift")
+            let manifestPath = tmpPath.appending("Composition.swift")
             try localFileSystem.writeFileContents(
                 manifestPath,
                 string: """

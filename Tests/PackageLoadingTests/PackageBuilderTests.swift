@@ -160,11 +160,11 @@ class PackageBuilderTests: XCTestCase {
         let fs = InMemoryFileSystem(emptyFiles:
             "/Sources/pkg/main.swift",
             "/Sources/pkg/noExtension",
-            "/Sources/pkg/Package.swift",
+            "/Sources/pkg/Composition.swift",
             "/.git/anchor",
             "/.xcodeproj/anchor",
             "/.playground/anchor",
-            "/Package.swift",
+            "/Composition.swift",
             "/Packages/MyPackage/main.c")
 
         let manifest = Manifest.createRootManifest(
@@ -176,7 +176,7 @@ class PackageBuilderTests: XCTestCase {
         PackageBuilderTester(manifest, in: fs) { package, _ in
             package.checkModule("pkg") { module in
                 module.check(type: .executable)
-                module.checkSources(root: "/Sources/pkg", paths: "main.swift", "Package.swift")
+                module.checkSources(root: "/Sources/pkg", paths: "main.swift", "Composition.swift")
             }
             package.checkProduct("pkg") { _ in }
         }
@@ -184,9 +184,9 @@ class PackageBuilderTests: XCTestCase {
 
     func testVersionSpecificManifests() throws {
         let fs = InMemoryFileSystem(emptyFiles:
-            "/Package.swift",
+            "/Composition.swift",
             "/Package@swift-999.swift",
-            "/Sources/Foo/Package.swift",
+            "/Sources/Foo/Composition.swift",
             "/Sources/Foo/Package@swift-1.swift")
 
         let name = "Foo"
@@ -199,7 +199,7 @@ class PackageBuilderTests: XCTestCase {
         PackageBuilderTester(manifest, in: fs) { package, _ in
             package.checkModule(name) { module in
                 module.check(c99name: name, type: .library)
-                module.checkSources(root: "/Sources/Foo", paths: "Package.swift", "Package@swift-1.swift")
+                module.checkSources(root: "/Sources/Foo", paths: "Composition.swift", "Package@swift-1.swift")
             }
         }
     }
@@ -1038,7 +1038,7 @@ class PackageBuilderTests: XCTestCase {
                 ]
             )
             PackageBuilderTester(manifest, in: fs) { _, diagnostics in
-                diagnostics.check(diagnostic: "Source files for target Random should be located under '\(predefinedSourceDir)/Random', '\(predefinedSourceDir)', or a custom sources path can be set with the 'path' property in Package.swift", severity: .warning)
+                diagnostics.check(diagnostic: "Source files for target Random should be located under '\(predefinedSourceDir)/Random', '\(predefinedSourceDir)', or a custom sources path can be set with the 'path' property in Composition.swift", severity: .warning)
             }
         }
         do {
@@ -1095,7 +1095,7 @@ class PackageBuilderTests: XCTestCase {
                 ]
             )
             PackageBuilderTester(manifest, in: fs) { _, diagnostics in
-                diagnostics.check(diagnostic: "Source files for target TargetA should be located under '\(predefinedSourceDir)/TargetA', or a custom sources path can be set with the 'path' property in Package.swift", severity: .error)
+                diagnostics.check(diagnostic: "Source files for target TargetA should be located under '\(predefinedSourceDir)/TargetA', or a custom sources path can be set with the 'path' property in Composition.swift", severity: .error)
             }
         }
     }
@@ -1138,7 +1138,7 @@ class PackageBuilderTests: XCTestCase {
                 ]
             )
             PackageBuilderTester(manifest, in: fs) { _, diagnostics in
-                diagnostics.check(diagnostic: "Source files for target RandomTests should be located under '\(predefinedSourceDir)/RandomTests', '\(predefinedSourceDir)', or a custom sources path can be set with the 'path' property in Package.swift", severity: .warning)
+                diagnostics.check(diagnostic: "Source files for target RandomTests should be located under '\(predefinedSourceDir)/RandomTests', '\(predefinedSourceDir)', or a custom sources path can be set with the 'path' property in Composition.swift", severity: .warning)
             }
         }
         do {
@@ -1197,7 +1197,7 @@ class PackageBuilderTests: XCTestCase {
                 ]
             )
             PackageBuilderTester(manifest, in: fs) { _, diagnostics in
-                diagnostics.check(diagnostic: "Source files for target TargetA should be located under '\(predefinedSourceDir)/TargetA', or a custom sources path can be set with the 'path' property in Package.swift", severity: .error)
+                diagnostics.check(diagnostic: "Source files for target TargetA should be located under '\(predefinedSourceDir)/TargetA', or a custom sources path can be set with the 'path' property in Composition.swift", severity: .error)
             }
         }
     }
@@ -1239,7 +1239,7 @@ class PackageBuilderTests: XCTestCase {
                 ]
             )
             PackageBuilderTester(manifest, in: fs) { _, diagnostics in
-                diagnostics.check(diagnostic: "Source files for target Random should be located under '\(predefinedSourceDir)/Random', '\(predefinedSourceDir)', or a custom sources path can be set with the 'path' property in Package.swift", severity: .warning)
+                diagnostics.check(diagnostic: "Source files for target Random should be located under '\(predefinedSourceDir)/Random', '\(predefinedSourceDir)', or a custom sources path can be set with the 'path' property in Composition.swift", severity: .warning)
             }
         }
 
@@ -1297,7 +1297,7 @@ class PackageBuilderTests: XCTestCase {
                 ]
             )
             PackageBuilderTester(manifest, in: fs) { _, diagnostics in
-                diagnostics.check(diagnostic: "Source files for target TargetA should be located under '\(predefinedSourceDir)/TargetA', or a custom sources path can be set with the 'path' property in Package.swift", severity: .error)
+                diagnostics.check(diagnostic: "Source files for target TargetA should be located under '\(predefinedSourceDir)/TargetA', or a custom sources path can be set with the 'path' property in Composition.swift", severity: .error)
             }
         }
     }
@@ -1340,7 +1340,7 @@ class PackageBuilderTests: XCTestCase {
                 ]
             )
             PackageBuilderTester(manifest, in: fs) { _, diagnostics in
-                diagnostics.check(diagnostic: "Source files for target Random should be located under '\(predefinedSourceDir)/Random', '\(predefinedSourceDir)', or a custom sources path can be set with the 'path' property in Package.swift", severity: .warning)
+                diagnostics.check(diagnostic: "Source files for target Random should be located under '\(predefinedSourceDir)/Random', '\(predefinedSourceDir)', or a custom sources path can be set with the 'path' property in Composition.swift", severity: .warning)
             }
         }
         do {
@@ -1399,7 +1399,7 @@ class PackageBuilderTests: XCTestCase {
                 ]
             )
             PackageBuilderTester(manifest, in: fs) { _, diagnostics in
-                diagnostics.check(diagnostic: "Source files for target TargetA should be located under '\(predefinedSourceDir)/TargetA', or a custom sources path can be set with the 'path' property in Package.swift", severity: .error)
+                diagnostics.check(diagnostic: "Source files for target TargetA should be located under '\(predefinedSourceDir)/TargetA', or a custom sources path can be set with the 'path' property in Composition.swift", severity: .error)
             }
         }
     }
@@ -1504,7 +1504,7 @@ class PackageBuilderTests: XCTestCase {
                 ]
             )
             PackageBuilderTester(manifest, in: fs) { _, diagnostics in
-                diagnostics.check(diagnostic: "Source files for target TargetA should be located under '\(predefinedSourceDir)/TargetA', or a custom sources path can be set with the 'path' property in Package.swift", severity: .error)
+                diagnostics.check(diagnostic: "Source files for target TargetA should be located under '\(predefinedSourceDir)/TargetA', or a custom sources path can be set with the 'path' property in Composition.swift", severity: .error)
             }
         }
     }
@@ -1548,7 +1548,7 @@ class PackageBuilderTests: XCTestCase {
                 ]
             )
             PackageBuilderTester(manifest, in: fs) { _, diagnostics in
-                diagnostics.check(diagnostic: "Source files for target Random should be located under '\(predefinedSourceDir)/Random', '\(predefinedSourceDir)', or a custom sources path can be set with the 'path' property in Package.swift", severity: .warning)
+                diagnostics.check(diagnostic: "Source files for target Random should be located under '\(predefinedSourceDir)/Random', '\(predefinedSourceDir)', or a custom sources path can be set with the 'path' property in Composition.swift", severity: .warning)
             }
         }
         do {
@@ -1609,7 +1609,7 @@ class PackageBuilderTests: XCTestCase {
                 ]
             )
             PackageBuilderTester(manifest, in: fs) { _, diagnostics in
-                diagnostics.check(diagnostic: "Source files for target TargetA should be located under '\(predefinedSourceDir)/TargetA', or a custom sources path can be set with the 'path' property in Package.swift", severity: .error)
+                diagnostics.check(diagnostic: "Source files for target TargetA should be located under '\(predefinedSourceDir)/TargetA', or a custom sources path can be set with the 'path' property in Composition.swift", severity: .error)
             }
         }
     }

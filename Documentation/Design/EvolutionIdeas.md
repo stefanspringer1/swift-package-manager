@@ -51,7 +51,7 @@ required to declare platform-specific dependencies which should only be fetched
 when a package is being built for a certain platform. This is currently possible
 using `#if os` checks, but it leads to two problems: 1) it forces
 a non-declarative syntax in the manifest file, and 2) it causes issues in
-maintaining the `Package.resolved` file as the dependency is added or removed
+maintaining the `Composition.resolved` file as the dependency is added or removed
 depending on the platform.
 
 Thread: N/A
@@ -167,7 +167,7 @@ Bug: [SR-3951](https://bugs.swift.org/browse/SR-3951)
 
 ## Cross-platform Sandboxing
 
-Sandboxing is one way to help prevent `Package.swift` manifest evaluation and
+Sandboxing is one way to help prevent `Composition.swift` manifest evaluation and
 builds from escaping out into your system, either accidentally or deliberately.
 SwiftPM uses macOS's sandboxing technology already, but it would be great to
 bring this safety to other platforms.
@@ -185,9 +185,9 @@ whether the API is backwards-compatible, at least at compile time.
 Thread: N/A
 Bug: N/A
 
-## Machine-Editable Package.swift
+## Machine-Editable Composition.swift
 
-We need an easy way to edit the Package.swift manifest from automated tools, for
+We need an easy way to edit the Composition.swift manifest from automated tools, for
 cases where you don't want users to have to update the Swift code directly. We
 think that it's possible to provide an API to allow this, probably using
 [`SwiftSyntax`](https://github.com/apple/swift/tree/master/tools/SwiftSyntax).

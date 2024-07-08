@@ -111,7 +111,7 @@ extension Package.Error: CustomStringConvertible {
    public var description: String {
         switch self {
         case .noManifest(let path, let version):
-            var string = "\(path) has no Package.swift manifest"
+            var string = "\(path) has no Composition.swift manifest"
             if let version {
                 string += " for version \(version)"
             }

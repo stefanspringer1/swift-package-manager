@@ -59,7 +59,7 @@ The following terms, as used in this document, have the meanings indicated.
 - _Package_:
   A named collection of Swift source code
   that is organized into one or more modules
-  according to a `Package.swift` manifest file.
+  according to a `Composition.swift` manifest file.
 - _Scope_:
   A logical grouping of related packages assigned by a package registry.
 - _Release_:
@@ -290,7 +290,7 @@ A server MUST respond to the following endpoints:
 | -------------------- | ------ | --------------------------------------------------------- | ------------------------------------------------- |
 | [\[1\]](#endpoint-1) | `GET`  | `/{scope}/{name}`                                         | List package releases                             |
 | [\[2\]](#endpoint-2) | `GET`  | `/{scope}/{name}/{version}`                               | Fetch metadata for a package release              |
-| [\[3\]](#endpoint-3) | `GET`  | `/{scope}/{name}/{version}/Package.swift{?swift-version}` | Fetch manifest for a package release              |
+| [\[3\]](#endpoint-3) | `GET`  | `/{scope}/{name}/{version}/Composition.swift{?swift-version}` | Fetch manifest for a package release              |
 | [\[4\]](#endpoint-4) | `GET`  | `/{scope}/{name}/{version}.zip`                           | Download source archive for a package release     |
 | [\[5\]](#endpoint-5) | `GET`  | `/identifiers{?url}`                                      | Lookup package identifiers registered for a URL   |
 | [\[6\]](#endpoint-6) | `PUT`  | `/{scope}/{name}/{version}`                               | Create a package release                          |
@@ -536,13 +536,13 @@ will hold the user-provided as well as the server populated metadata.
 ### 4.3. Fetch manifest for a package release
 
 A client MAY send a `GET` request for a URI matching the expression
-`/{scope}/{name}/{version}/Package.swift`
+`/{scope}/{name}/{version}/Composition.swift`
 to retrieve the package manifest for a release.
 A client SHOULD set the `Accept` header with the value
 `application/vnd.swift.registry.v1+swift`.
 
 ```http
-GET /mona/LinkedList/1.1.1/Package.swift HTTP/1.1
+GET /mona/LinkedList/1.1.1/Composition.swift HTTP/1.1
 Host: packages.example.com
 Accept: application/vnd.swift.registry.v1+swift
 ```
@@ -556,11 +556,11 @@ Otherwise, a server SHOULD respond with a status code of `404` (Not Found).
 HTTP/1.1 200 OK
 Cache-Control: public, immutable
 Content-Type: text/x-swift
-Content-Disposition: attachment; filename="Package.swift"
+Content-Disposition: attachment; filename="Composition.swift"
 Content-Length: 361
 Content-Version: 1
-Link: <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=4>; rel="alternate"; filename="Package@swift-4.swift"; swift-tools-version="4.0",
-      <http://packages.example.com/mona/LinkedList/1.1.1/Package.swift?swift-version=4.2>; rel="alternate"; filename="Package@swift-4.2.swift"; swift-tools-version="4.0"
+Link: <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=4>; rel="alternate"; filename="Package@swift-4.swift"; swift-tools-version="4.0",
+      <http://packages.example.com/mona/LinkedList/1.1.1/Composition.swift?swift-version=4.2>; rel="alternate"; filename="Package@swift-4.2.swift"; swift-tools-version="4.0"
 
 // swift-tools-version:5.0
 import PackageDescription
@@ -584,7 +584,7 @@ set to the size of the manifest in bytes.
 A server SHOULD respond with a `Content-Disposition` header
 set to `attachment` with a `filename` parameter equal to
 the name of the manifest file
-(for example, "Package.swift").
+(for example, "Composition.swift").
 
 A server MAY omit the `Content-Version` header
 since the response content (i.e., the manifest) SHOULD NOT
@@ -616,7 +616,7 @@ A client MAY specify a `swift-version` query parameter
 to request a manifest for a particular version of Swift.
 
 ```http
-GET /mona/LinkedList/1.1.1/Package.swift?swift-version=4.2 HTTP/1.1
+GET /mona/LinkedList/1.1.1/Composition.swift?swift-version=4.2 HTTP/1.1
 Host: packages.example.com
 Accept: application/vnd.swift.registry.v1+swift
 ```
@@ -652,12 +652,12 @@ let package = Package(
 
 Otherwise,
 the server SHOULD respond with a status code of `303` (See Other)
-and redirect to the unqualified `Package.swift` resource.
+and redirect to the unqualified `Composition.swift` resource.
 
 ```http
 HTTP/1.1 303 See Other
 Content-Version: 1
-Location: https://packages.example.com/mona/LinkedList/1.1.1/Package.swift
+Location: https://packages.example.com/mona/LinkedList/1.1.1/Composition.swift
 ```
 
 <a name="endpoint-4"></a>
@@ -1024,7 +1024,7 @@ Content-Type: application/problem+json
 Content-Language: en
 
 {
-   "detail": "package doesn't contain a valid manifest (Package.swift) file"
+   "detail": "package doesn't contain a valid manifest (Composition.swift) file"
 }
 ```
 

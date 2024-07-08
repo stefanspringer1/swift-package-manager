@@ -53,7 +53,7 @@ Package(
 
 ### About the Swift Tools Version
 
-A `Package.swift` manifest file must begin with the string
+A `Composition.swift` manifest file must begin with the string
 `// swift-tools-version:` followed by a version number specifier.
 The following code listing shows a few examples of valid declarations
 of the Swift tools version:
@@ -259,10 +259,10 @@ and a requirement for the version of the package.
 
 The Swift Package Manager performs a process called *dependency resolution* to
 figure out the exact version of the package dependencies that an app or other
-Swift package can use. The `Package.resolved` file records the results of the
+Swift package can use. The `Composition.resolved` file records the results of the
 dependency resolution and lives in the top-level directory of a Swift package.
 If you add the Swift package as a package dependency to an app for an Apple platform,
-you can find the `Package.resolved` file inside your `.xcodeproj` or `.xcworkspace`.
+you can find the `Composition.resolved` file inside your `.xcodeproj` or `.xcworkspace`.
 
 ## Methods
 

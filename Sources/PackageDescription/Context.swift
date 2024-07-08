@@ -18,7 +18,7 @@
 public struct Context {
     private static let model = try! ContextModel.decode()
 
-    /// The directory that contains `Package.swift`.
+    /// The directory that contains `Composition.swift`.
     public static var packageDirectory : String {
         model.packageDirectory
     }

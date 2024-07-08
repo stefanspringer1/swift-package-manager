@@ -2174,7 +2174,7 @@ class PackageGraphTests: XCTestCase {
     // TODO: remove this when we remove explicit dependency name
     func testTargetDependencies_Post52_AliasFindsIdentity() throws {
         let manifest = Manifest.createRootManifest(
-            displayName: "Package",
+            displayName: "Composition",
             path: "/Package",
             toolsVersion: .v5_2,
             dependencies: [

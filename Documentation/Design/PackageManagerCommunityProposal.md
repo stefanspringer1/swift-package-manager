@@ -71,7 +71,7 @@ By design, the Swift Package Manager tightly integrates features across package 
 
 Rather than requiring that every detail of a package is explicitly configured, the Swift Package Manager establishes a set of conventions about how packages are structured.
 
-A package is simply a directory containing a manifest file, called `Package.swift`. By default, the Swift Package Manager will automatically infer the information it needs to build the package from the layout of the directory itself:
+A package is simply a directory containing a manifest file, called `Composition.swift`. By default, the Swift Package Manager will automatically infer the information it needs to build the package from the layout of the directory itself:
 
 * Any source code files in the root directory or in a top-level `Sources/` or `src/` directory will be automatically included by the build system.
 * Any subdirectories of the `Sources/` or `src/` directory will automatically define separate modules.
@@ -83,7 +83,7 @@ The manifest format will eventually allow for additional configuration, such as 
 
 ### Swift Code as Manifest Format
 
-The manifest file, `Package.swift`, defines a `Package` object in Swift code.
+The manifest file, `Composition.swift`, defines a `Package` object in Swift code.
 
 Using Swift as a manifest file format allows us to provide a great authoring experience with the tools you already use to work with Swift. However, this could make it difficult for tools to automatically modify the manifest. To mitigate this issue, the manifest file format will eventually be more structured. Although it will remain valid Swift code, the manifest file will be divided into a declarative section, which is easily machine-editable, and an optional section of additional code, which can be ignored by tools.
 
@@ -109,7 +109,7 @@ By default, the module name of each dependency is derived from its source URL. F
 
 A package may depend on one or more _system module packages_, which allow system libraries written in C to be imported and used in Swift code.
 
-Like any package, a system module package must contain a `Package.swift` file. However, instead of Swift source files, a system module package contains only a `module.modulemap` file, which maps the headers of the system library.
+Like any package, a system module package must contain a `Composition.swift` file. However, instead of Swift source files, a system module package contains only a `module.modulemap` file, which maps the headers of the system library.
 
 ### Semantic Versioning
 
@@ -276,7 +276,7 @@ This would allow developers to quickly evaluate packages with no setup cost. Thi
 
 ### Module Interdependency Determination
 
-Currently, if you add `import B` to a source file in module A, you would also need to specify this dependency in the manifest file. If the dependency is not specified, builds will fail because module B must be built before module A. We would like to provide a command that would calculate your module inter-dependencies and alter the machine editable portion of `Package.swift` for you.
+Currently, if you add `import B` to a source file in module A, you would also need to specify this dependency in the manifest file. If the dependency is not specified, builds will fail because module B must be built before module A. We would like to provide a command that would calculate your module inter-dependencies and alter the machine editable portion of `Composition.swift` for you.
 
 It may be possible for the package manager to calculate this every build, but doing so might introduce significant overhead to the build process.
 
