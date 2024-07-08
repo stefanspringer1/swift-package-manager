@@ -37,8 +37,13 @@ public struct ToolsVersionParser {
         //     }
 
         let manifestContents: ByteString
+        
         do {
-            manifestContents = try fileSystem.readFileContents(manifestPath)
+            manifestContents = if manifestPath.basename != "Package" && !fileSystem.isFile(manifestPath) {
+                ByteString(encodingAsUTF8: manifestDefault(forFolderName: manifestPath.dirname))
+            } else {
+                try fileSystem.readFileContents(manifestPath)
+            }
         } catch {
             throw Error.inaccessibleManifest(path: manifestPath, reason: String(describing: error))
         }

@@ -13,11 +13,33 @@
 import Basics
 import struct Foundation.Data
 
+func manifestDefault(forFolderName folderName: String) -> String {
+    """
+    // swift-tools-version:5.9
+    // The swift-tools-version declares the minimum version of Swift required to build this package.
+    
+    import PackageDescription
+    
+    let package = Package(
+        name: "\(folderName)",
+        dependencies: [
+            // Dependencies declare other packages that this package depends on.
+            // ...
+        ]
+    )
+    
+    """
+}
+
 public enum ManifestSignatureParser {
     public static func parse(manifestPath: AbsolutePath, fileSystem: FileSystem) throws -> ManifestSignature? {
         let manifestContents: String
         do {
-            manifestContents = try fileSystem.readFileContents(manifestPath)
+            manifestContents = if manifestPath.basename != "Package" && !fileSystem.isFile(manifestPath) {
+                manifestDefault(forFolderName: manifestPath.dirname)
+            } else {
+                try fileSystem.readFileContents(manifestPath)
+            }
         } catch {
             throw Error.inaccessibleManifest(path: manifestPath, reason: String(describing: error))
         }

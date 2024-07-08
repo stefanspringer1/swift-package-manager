@@ -320,7 +320,7 @@ public final class ManifestLoader: ManifestLoaderProtocol {
         }
 
         // Validate that the file exists.
-        guard fileSystem.isFile(manifestPath) else {
+        guard fileSystem.isFile(manifestPath) || manifestPath.basename != "Package" else {
             return callbackQueue.async {
                 completion(.failure(PackageModel.Package.Error.noManifest(at: manifestPath, version: packageVersion?.version)))
             }
@@ -1116,7 +1116,12 @@ extension ManifestLoader {
               swiftpmVersion: String,
               fileSystem: FileSystem
         ) throws {
-            let manifestContents = try fileSystem.readFileContents(manifestPath).contents
+            let manifestContents =
+                if manifestPath.basename != "Package" && !fileSystem.isFile(manifestPath) {
+                    Array(manifestDefault(forFolderName: manifestPath.dirname).utf8)
+                } else {
+                    try fileSystem.readFileContents(manifestPath).contents
+                }
             let sha256Checksum = try Self.computeSHA256Checksum(
                 packageIdentity: packageIdentity,
                 packageLocation: packageLocation,
